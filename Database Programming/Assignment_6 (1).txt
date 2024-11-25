@@ -1,0 +1,336 @@
+--Q1--
+DROP TABLE EMP_LOG;
+
+CREATE TABLE Emp_log(
+  Updated_Date DATE,
+  Updated_By Varchar2 (20),
+  Action Varchar2 (30)
+);
+
+CREATE OR REPLACE TRIGGER Emp_Delete
+AFTER DELETE ON Employees 
+BEGIN
+  INSERT INTO Emp_log (
+    Updated_Date, 
+    Updated_By, 
+    Action
+  ) VALUES (
+    SYSDATE, 
+    USER, 
+    'Employee(s) Deleted'
+  );
+END;
+/
+DELETE Employees where Salary < 2300;
+
+SELECT * FROM Emp_log; 
+ROLLBACK;
+DROP TRIGGER Emp_Delete; 
+
+--Output--
+Table EMP_LOG dropped.
+
+
+Table EMP_LOG created.
+
+
+Trigger EMP_DELETE compiled
+
+
+3 rows deleted.
+
+
+UPDATED_ UPDATED_BY           ACTION                        
+-------- -------------------- ------------------------------
+11/03/24 RDHOYDA              Employee(s) Deleted           
+
+
+Rollback complete.
+
+
+Trigger EMP_DELETE dropped.
+
+--Q2--
+CREATE TABLE Empl_Del_log (
+  Empno      number (6),
+  OLD_fname  Varchar2 (20),
+  OLD_lname  varchar2 (25),
+  OLD_sal    number (8, 2),
+  OLD_mgrno  number (6), 
+  Updated_Date  DATE,
+  Updated_By    Varchar2 (15),
+  Action        Varchar2 (30)
+);
+
+
+CREATE OR REPLACE TRIGGER Empl_Del_Row
+BEFORE DELETE ON Employees
+FOR EACH ROW
+DECLARE
+   v_action VARCHAR2(30) := 'Record Deleted';
+BEGIN
+   INSERT INTO Empl_Del_log (
+      Empno,
+      OLD_fname,
+      OLD_lname,
+      OLD_sal,
+      OLD_mgrno,
+      Updated_Date,
+      Updated_By,
+      Action
+   )
+   VALUES (
+      :OLD.employee_id,
+      :OLD.first_name,
+      :OLD.last_name,
+      :OLD.salary,
+      :OLD.manager_id,
+      SYSDATE,
+      USER,
+      v_action
+   );
+END;
+/
+
+DELETE FROM Employees WHERE manager_id = 103;
+
+COLUMN OLD_FNAME FORMAT A9
+COLUMN OLD_LNAME FORMAT A9
+SELECT * FROM Empl_Del_log;
+
+ROLLBACK;
+
+DROP TRIGGER Empl_Del_Row;
+
+----OUTPUT----
+
+
+Table EMPL_DEL_LOG created.
+
+
+Trigger EMPL_DEL_ROW compiled
+
+
+4 rows deleted.
+
+
+     EMPNO OLD_FNAME OLD_LNAME    OLD_SAL  OLD_MGRNO UPDATED_ UPDATED_BY      ACTION                        
+---------- --------- --------- ---------- ---------- -------- --------------- ------------------------------
+       104 Bruce     Ernst           6000        103 11/03/24 RDHOYDA         Record Deleted                
+       105 David     Austin          4800        103 11/03/24 RDHOYDA         Record Deleted                
+       106 Valli     Pataballa       4800        103 11/03/24 RDHOYDA         Record Deleted                
+       107 Diana     Lorentz         4200        103 11/03/24 RDHOYDA         Record Deleted                
+
+
+Rollback complete.
+
+
+Trigger EMPL_DEL_ROW dropped.
+
+---Q3---
+CREATE TABLE Dept_log(
+   OLD_Deptno     NUMBER(4),
+   NEW_Deptno     NUMBER(4),
+   OLD_Deptname   VARCHAR2(30),
+   NEW_Deptname   VARCHAR2(30),
+   OLD_MgrID      NUMBER(6),
+   NEW_MgrID      NUMBER(6),
+   Updated_Date   DATE,
+   Updated_By     VARCHAR2(15),
+   Action         VARCHAR2(25)
+);
+
+CREATE OR REPLACE TRIGGER Dept_Change
+BEFORE INSERT OR UPDATE OF manager_id OR DELETE ON departments
+FOR EACH ROW
+DECLARE
+  v_action VARCHAR2(25);
+BEGIN
+  IF INSERTING THEN
+    v_action := 'Record Inserted';
+  ELSIF UPDATING THEN
+    v_action := 'Record Updated';
+  ELSIF DELETING THEN
+    v_action := 'Record Deleted';
+  END IF;
+
+  IF (UPDATING('manager_id') AND :OLD.manager_id <> :NEW.manager_id) OR 
+     INSERTING OR DELETING 
+  THEN
+    INSERT INTO Dept_log (
+      OLD_Deptno, NEW_Deptno, OLD_Deptname, NEW_Deptname, 
+      OLD_MgrID, NEW_MgrID, Updated_Date, Updated_By, Action
+    ) VALUES (
+      :OLD.department_id, :NEW.department_id, :OLD.department_name, :NEW.department_name,
+      :OLD.manager_id, :NEW.manager_id, SYSDATE, USER, v_action
+    );
+  END IF;
+END;
+/
+
+COLUMN OLD_Deptname FORMAT A10
+COLUMN NEW_Deptname FORMAT A10
+
+
+SELECT * FROM Dept_log;
+
+
+INSERT INTO departments VALUES (290, 'Test', NULL, 1700);
+
+
+UPDATE departments SET manager_id = 103 WHERE department_id = 290;
+
+
+DELETE FROM departments WHERE department_id = 290;
+
+
+SELECT * FROM Dept_log;
+
+
+ROLLBACK;
+
+DROP TRIGGER Dept_Change;
+
+---OUTPUT---
+
+
+Table DEPT_LOG created.
+
+
+Trigger DEPT_CHANGE compiled
+
+no rows selected
+
+1 row inserted.
+
+
+1 row updated.
+
+
+1 row deleted.
+
+
+OLD_DEPTNO NEW_DEPTNO OLD_DEPTNA NEW_DEPTNA  OLD_MGRID  NEW_MGRID UPDATED_ UPDATED_BY      ACTION                   
+---------- ---------- ---------- ---------- ---------- ---------- -------- --------------- -------------------------
+                  290            Test                             11/03/24 RDHOYDA         Record Inserted          
+       290            Test                         103            11/03/24 RDHOYDA         Record Deleted           
+
+
+Rollback complete.
+
+
+Trigger DEPT_CHANGE dropped.
+
+---Q4---
+CREATE OR REPLACE PACKAGE Dept_Address AS
+
+  TYPE DEPT_INFO IS RECORD (
+    dept_id   NUMBER(4),
+    dept_name VARCHAR2(30),
+    str_city  VARCHAR2(40)
+  );
+
+  FUNCTION Dept_Addr (dept_id_in  IN NUMBER)  RETURN DEPT_INFO;
+
+  FUNCTION Dept_Addr (dept_name_in IN VARCHAR2) RETURN DEPT_INFO;
+
+END Dept_Address;
+/
+
+
+CREATE OR REPLACE PACKAGE BODY Dept_Address AS
+  FUNCTION Dept_Addr (dept_id_in  IN NUMBER) RETURN DEPT_INFO IS
+    dept_rec DEPT_INFO;
+  BEGIN
+    SELECT deptno, dname, loc 
+      INTO dept_rec.dept_id, dept_rec.dept_name, dept_rec.str_city
+      FROM dept
+      WHERE deptno = dept_id_in;
+
+    RETURN dept_rec; 
+  EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+      DBMS_OUTPUT.PUT_LINE('Department ID ' || dept_id_in || ' not found.');
+      RETURN NULL; 
+  END Dept_Addr;
+
+  FUNCTION Dept_Addr (dept_name_in IN VARCHAR2) RETURN DEPT_INFO IS
+    dept_rec DEPT_INFO;
+  BEGIN
+    SELECT deptno, dname, loc 
+      INTO dept_rec.dept_id, dept_rec.dept_name, dept_rec.str_city
+      FROM dept
+      WHERE dname = dept_name_in;
+
+    RETURN dept_rec; 
+  EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+      DBMS_OUTPUT.PUT_LINE('Department name ' || dept_name_in || ' not found.');
+      RETURN NULL; 
+  END Dept_Addr;
+
+BEGIN
+  NULL; 
+END Dept_Address;
+/
+
+SET SERVEROUTPUT ON
+DECLARE
+  dept_details  Dept_Address.DEPT_INFO;
+BEGIN
+  dept_details := Dept_Address.Dept_Addr(dept_id_in => 30);  
+  DBMS_OUTPUT.PUT_LINE('Department ID: ' || dept_details.dept_id);
+  DBMS_OUTPUT.PUT_LINE('Department Name: ' || dept_details.dept_name);
+  DBMS_OUTPUT.PUT_LINE('Location: ' || dept_details.str_city);
+
+ 
+  DBMS_OUTPUT.PUT_LINE('----------------------------'); 
+  FOR dept_rec IN (SELECT deptno, dname, loc FROM dept) LOOP 
+    dept_details := Dept_Address.Dept_Addr(dept_name_in => dept_rec.dname); 
+    DBMS_OUTPUT.PUT_LINE('Department ID: ' || dept_rec.deptno); 
+    DBMS_OUTPUT.PUT_LINE('Department Name: ' || dept_rec.dname);
+    DBMS_OUTPUT.PUT_LINE('Location: ' || dept_rec.loc); 
+    DBMS_OUTPUT.PUT_LINE('Manager: Not Assigned');
+    DBMS_OUTPUT.PUT_LINE('----------------------------'); 
+  END LOOP;
+END;
+/
+
+-----OUTPUT-----
+
+Package DEPT_ADDRESS compiled
+
+
+Package Body DEPT_ADDRESS compiled
+
+Department ID: 30
+Department Name: SALES
+Location: CHICAGO
+----------------------------
+Department ID: 10
+Department Name: ACCOUNTING
+Location: NEW YORK
+Manager: Not Assigned
+----------------------------
+Department ID: 20
+Department Name: RESEARCH
+Location: DALLAS
+Manager: Not Assigned
+----------------------------
+Department ID: 30
+Department Name: SALES
+Location: CHICAGO
+Manager: Not Assigned
+----------------------------
+Department ID: 40
+Department Name: OPERATIONS
+Location: BOSTON
+Manager: Not Assigned
+----------------------------
+
+
+PL/SQL procedure successfully completed.
+
+
+
+

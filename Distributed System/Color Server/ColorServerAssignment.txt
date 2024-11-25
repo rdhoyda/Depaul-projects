@@ -1,0 +1,184 @@
+/* 1.0 2022-01-12 Rohan Dhoyda, ColorServer.java and ColorClient.java
+
+Name: Rohan Dhoyda
+Data: 2022-01-12
+Java Version: 18.0.2.1
+Command-line compilation: > javac *.java [executed twice]
+Running these programs:
+
+
+*/
+
+import java.io.*;
+import java.net.*;
+
+class ColorInformation implements Serializable{ // Must be serializable to send 1 bit after another over the network.
+  String UserName;
+  String colorrequestreceived;
+  String colorgiven;
+  String messageToClient;
+  int colorCount;
+}
+
+class ColorWorker extends Thread {    // This is a concept of multithreading means many of the worker thread will work simultaneously
+  Socket sock;                        // Class member, socket, local to ColorWorker.
+  ColorWorker (Socket u) {sock = u;}  // Constructor, assign arg  to local sock
+
+  public void run(){
+    try{
+      // Get I/O object streams in/out from the socket, then...
+      // ...read in and deserialize the object sent from the client:
+      
+      InputStream InStream = sock.getInputStream();  
+      ObjectInputStream ObjectIS = new ObjectInputStream(InStream); //The Server waits for the client to make a connection request
+
+      ColorInformation InObject = (ColorInformation) ObjectIS.readObject(); // We now have random access to the color data object.
+      
+      OutputStream outStream = sock.getOutputStream();
+      ObjectOutputStream objectOS = new ObjectOutputStream(outStream); // The Server waits for client to make a connection request
+
+      System.out.println("\nCLIENT REQUEST:\n");
+      System.out.println("Name of the user " + InObject.UserName);
+      System.out.println("Color request from client: " + InObject.colorrequestreceived);
+      System.out.println("connections count: " + (InObject.colorCount + 1)); //It increases the connection count everytime after a conncetion is established from the client side
+      
+      InObject.colorgiven = getRandomColor(); //It will select random color for a client that needs to be sent back
+      InObject.colorCount++;
+      InObject.messageToClient =
+	String.format("Thanks %s for sending the color %s", InObject.UserName, InObject.colorrequestreceived);
+      
+      objectOS.writeObject(InObject); // Send it back.
+      
+      System.out.println("Closing the client socket connection...");
+      sock.close(); // This will close the client and server socket connection
+      
+    } catch(ClassNotFoundException CNF){
+      CNF.printStackTrace(); // Class is defined in the server code.
+    } catch (IOException x){
+      System.out.println("Server error.");
+      x.printStackTrace();
+    }
+  }
+  // A string of random color is made for a client that needs to be sent back
+  String getRandomColor(){
+
+    String[] colorArray = new String[]
+      {
+       "Red", "Blue", "Green", "Yellow", "Magenta","Aqua","Orange","Soft White","Cyan","Brown","Violet","Pink","Maroon"
+      };
+    
+    int randomArrayIndex = (int) (Math.random() * colorArray.length);
+    return (colorArray[randomArrayIndex]);
+  }
+}
+
+public class ColorServer {
+  public static void main(String[] args) throws Exception
+  {
+    int q_len = 6; /* It means that this color server can perform 6 simultaneous operation at a time or you can say 6 client at a time*/
+    int SP = 19565;
+    Socket sock;
+    
+    System.out.println
+      ("Rohan Dhoyda's Color Server 1.0 starting up, listening at port " + SP + ".\n");
+    
+   
+    ServerSocket servSock = new ServerSocket(SP, q_len); //The Server Waits for the Client to make a connection request
+    System.out.println("ServerSocket waiting for client to initiate connections..."); // Server Socket is now waiting for a client to make a connection
+    
+    while (true) { // Use control-C to manually terminate the server.
+      sock = servSock.accept();   // When Server code makes use of accept method, it will not execute until a client connection is made
+      System.out.println("Connection initiated with " + sock); 
+      new ColorWorker(sock).start();//Spawn a worker thread to handle it. Immediately listen for the next connection.
+    }
+  }
+}
+
+
+
+
+-----------------------------------------------------------------
+import java.io.*;
+import java.net.*;
+import java.util.Scanner;
+
+public class ColorClient {
+  private static int clientColorCount = 0;
+  public static void main(String argu[]) {
+    ColorClient cc = new ColorClient(argu);
+    cc.run(argu);
+  }
+
+  public ColorClient(String argu[]) { // Constructor
+    System.out.println("\nDo you want to use this constructor\n");
+  }
+
+  public void run(String argu[]) {
+    
+      String sNAME;
+      if (argu.length < 1) sNAME = "localhost"; // Check for passed server name or IP address.
+      else sNAME = argu[0];
+
+    
+	Scanner consoleIn = new Scanner(System.in);
+	System.out.print("To Request a color you need to give your name: ");
+	System.out.flush ();
+	String UserName = consoleIn.nextLine();
+	System.out.println("Hi " + UserName);
+	do {
+	  System.out.print("Choose a color you want: ");
+	  colorFromClient = consoleIn.nextLine();
+	  if (colorFromClient.indexOf("quit") < 0){ // Quit has not been entered.
+	    getColor(UserName, colorFromClient, serverName);
+	  }
+	} while (colorFromClient.indexOf("quit") < 0);
+	System.out.println ("Cancelled by user request.");
+	System.out.println (UserName + ", You sent and received " + clientColorCount + " colors.");
+  }
+
+  void getColor(String UserName, String colorFromClient, String serverName){
+    
+    try{
+      ColorInformation colorObj = new ColorInformation(); // Defined in ColorServer, must compile that first.
+      colorObj.UserName = UserName;
+      colorObj.colorrequestreceived = colorFromClient;
+      colorObj.colorCount = clientColorCount;
+      
+      // Socket socket = new Socket("JUNKhost", 45565); // Demonstrate the UH exception below.
+      Socket socket = new Socket(serverName, 19565);
+      System.out.println("\nWe have successfully connected to the ColorServer at port 19,565");
+      
+      OutputStream OutputStream = socket.getOutputStream();
+      ObjectOutputStream oos = new ObjectOutputStream(OutputStream); // To serialize the object.
+      
+      oos.writeObject(colorObj); // Marshal the serialized java object to the network.
+      System.out.println("We have sent the serialized values to the ColorServer's server socket");
+
+      InputStream InStream = socket.getInputStream();
+      ObjectInputStream ois = new ObjectInputStream(InStream);
+      ColorInformation InObject = (ColorInformation) ois.readObject(); // We now have random access to the color data object.
+
+      // Important to note! We are maintaining the conversation state while using a connectionless protocol:
+      clientColorCount = InObject.colorCount; // Save in local class variable.
+
+      System.out.println("\nFROM THE SERVER:");
+      System.out.println(InObject.messageToClient);
+      System.out.println("The color sent back is: " + InObject.colorgiven);
+      System.out.println("The color count is: " + InObject.colorCount + "\n");
+      
+      
+      System.out.println("Closing the connection to the server.\n");
+      socket.close();
+    } catch (ConnectException CE){
+      System.out.println("\nOh no. The ColorServer refused our connection! Is it running?\n");
+      CE.printStackTrace();
+    } catch (UnknownHostException UH){
+      System.out.println("\nUnknown Host problem.\n"); // Test by commenting out / uncommenting out above.
+      UH.printStackTrace();
+    } catch(ClassNotFoundException CNF){// For the ColorData class defined in the server code.
+	CNF.printStackTrace();
+    } catch (IOException IOE){
+      IOE.printStackTrace(); // Describe the problem on the console.
+    }
+  }
+}

@@ -1,0 +1,10 @@
+name: CTA_Train_Traffic
+title: CTA_Train_Traffic
+username: logowilliams2
+account: logowilliams2
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 10500791
+bundleId: 7918989
+url: https://logowilliams2.shinyapps.io/CTA_Train_Traffic/
+version: 1

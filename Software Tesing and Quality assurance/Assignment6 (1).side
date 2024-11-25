@@ -1,0 +1,877 @@
+{
+  "id": "ec118926-2e05-45cb-9959-3e5f484e8901",
+  "version": "2.0",
+  "name": "ASSIGNMENT 6-Rohan Dhoyda",
+  "url": "https://depaul.bncollege.com",
+  "tests": [{
+    "id": "29ac09c6-800b-4303-81c6-a2abf9887778",
+    "name": "HW TEST",
+    "commands": [{
+      "id": "f0f06e02-56d7-46f6-a1cd-6c2de21a4aa1",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2f009141-843c-4ab6-8af5-ac2796ab608d",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x832",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "23a4b42b-45a5-4fe3-aeaf-699e61ce07cd",
+      "comment": "",
+      "command": "click",
+      "target": "id=bned_site_search",
+      "targets": [
+        ["id=bned_site_search", "id"],
+        ["name=text", "name"],
+        ["css=#bned_site_search", "css:finder"],
+        ["xpath=//input[@id='bned_site_search']", "xpath:attributes"],
+        ["xpath=//form/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2fc7196a-cd36-48a4-871c-a3b3cf6769c8",
+      "comment": "",
+      "command": "type",
+      "target": "id=bned_site_search",
+      "targets": [
+        ["id=bned_site_search", "id"],
+        ["name=text", "name"],
+        ["css=#bned_site_search", "css:finder"],
+        ["xpath=//input[@id='bned_site_search']", "xpath:attributes"],
+        ["xpath=//form/div/input", "xpath:position"]
+      ],
+      "value": "earbuds"
+    }, {
+      "id": "b10a71d0-0d8d-44ab-bc79-8379d7b38c72",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=bned_site_search",
+      "targets": [
+        ["id=bned_site_search", "id"],
+        ["name=text", "name"],
+        ["css=#bned_site_search", "css:finder"],
+        ["xpath=//input[@id='bned_site_search']", "xpath:attributes"],
+        ["xpath=//form/div/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "53e694b5-d5be-4f80-a60a-71e638c6c1d8",
+      "comment": "",
+      "command": "click",
+      "target": "css=.facet:nth-child(6) .leftNavExpand > svg",
+      "targets": [
+        ["css=.facet:nth-child(6) .leftNavExpand > svg", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "cc02bbad-fb29-48b5-b549-2ed7eaa4e28d",
+      "comment": "",
+      "command": "click",
+      "target": "css=#facet-brand .facet__list:nth-child(1) > li:nth-child(1) .facet-unchecked > svg",
+      "targets": [
+        ["css=#facet-brand .facet__list:nth-child(1) > li:nth-child(1) .facet-unchecked > svg", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "418ecd7c-5c11-477e-8ffc-d10c5cc8b5c3",
+      "comment": "",
+      "command": "runScript",
+      "target": "window.scrollTo(0,24)",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bb0cfc24-525d-405b-98fd-401e431eb260",
+      "comment": "",
+      "command": "click",
+      "target": "css=.facet:nth-child(8) .leftNavExpand path",
+      "targets": [
+        ["css=.facet:nth-child(8) .leftNavExpand path", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "116c202e-d33a-473e-9f71-5f95b192cb15",
+      "comment": "",
+      "command": "click",
+      "target": "css=#facet-Color li:nth-child(1) .facet-unchecked:nth-child(1) path:nth-child(1)",
+      "targets": [
+        ["css=#facet-Color li:nth-child(1) .facet-unchecked:nth-child(1) path:nth-child(1)", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "bc648568-2943-4f5e-87d6-2acb6368c2b3",
+      "comment": "",
+      "command": "click",
+      "target": "css=.facet:nth-child(6) .leftNavExpand > svg",
+      "targets": [
+        ["css=.facet:nth-child(6) .leftNavExpand > svg", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "46bc9839-c75e-4e18-b6a8-94575f2fe9e0",
+      "comment": "",
+      "command": "click",
+      "target": "css=#facet-price li:nth-child(2) .facet-unchecked:nth-child(1) path:nth-child(1)",
+      "targets": [
+        ["css=#facet-price li:nth-child(2) .facet-unchecked:nth-child(1) path:nth-child(1)", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "dd8a936a-e5a1-4799-a9bd-95a39ecad98d",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=JBL Quantum True Wireless Noise Cancelling Gaming Earbuds- Black",
+      "targets": [
+        ["linkText=JBL Quantum True Wireless Noise Cancelling Gaming Earbuds- Black", "linkText"],
+        ["css=.product-tile:nth-child(2) .name", "css:finder"],
+        ["xpath=//a[contains(text(),'JBL Quantum True Wireless Noise Cancelling Gaming Earbuds- Black')]", "xpath:link"],
+        ["xpath=(//a[contains(@href, '/JBL/JBL-Quantum-True-Wireless-Noise-Cancelling-Gaming-Earbuds--Black/p/668972707?currentCampus=85')])[2]", "xpath:href"],
+        ["xpath=//ul/div[2]/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'JBL Quantum True Wireless Noise Cancelling Gaming Earbuds- Black')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6fb82f2f-f206-4cfd-859c-f171fcdb8de8",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.page-title > .name",
+      "targets": [
+        ["css=.page-title > .name", "css:finder"],
+        ["xpath=//div[4]/div/h1", "xpath:position"]
+      ],
+      "value": "JBL Quantum True Wireless Noise Cancelling Gaming Earbuds- Black"
+    }, {
+      "id": "d7e71029-e1d8-409a-b516-c7e711e760dd",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.page-title .code",
+      "targets": [
+        ["css=.page-title .code", "css:finder"],
+        ["xpath=//div[4]/div/div/span", "xpath:position"]
+      ],
+      "value": "668972707"
+    }, {
+      "id": "ceb7724d-fe64-4524-be0b-8b4ffc3b443a",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.price",
+      "targets": [
+        ["css=.price", "css:finder"],
+        ["xpath=//div[4]/div[2]/div[2]/div/div/p", "xpath:position"],
+        ["xpath=//p[contains(.,'$149.98')]", "xpath:innerText"]
+      ],
+      "value": "$149.98"
+    }, {
+      "id": "8a79e823-ba1b-4d01-9fbc-8806119a2dde",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.description > p",
+      "targets": [
+        ["css=.description > p", "css:finder"],
+        ["xpath=//div[3]/p", "xpath:position"],
+        ["xpath=//p[contains(.,'Adaptive noise cancelling allows awareness of environment when gaming on the go. Light weight, durable, water resist. USB-C dongle for low latency connection < than 30ms.')]", "xpath:innerText"]
+      ],
+      "value": "Adaptive noise cancelling allows awareness of environment when gaming on the go. Light weight, durable, water resist. USB-C dongle for low latency connection < than 30ms."
+    }, {
+      "id": "e0d9c28e-2f85-45a0-99f4-0c513240f53f",
+      "comment": "",
+      "command": "click",
+      "target": "id=addToCartButton",
+      "targets": [
+        ["id=addToCartButton", "id"],
+        ["css=#addToCartButton", "css:finder"],
+        ["xpath=//button[@id='addToCartButton']", "xpath:attributes"],
+        ["xpath=//form[@id='addToCartForm']/button", "xpath:idRelative"],
+        ["xpath=//form[2]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "16ac7733-8123-448a-8d94-195c2b29c1da",
+      "comment": "",
+      "command": "pause",
+      "target": "2000",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e6a8d2b4-df6b-4c7d-8bdf-c2b9e13e6927",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.utility-links .cart-items-info",
+      "targets": [
+        ["css=.utility-links .cart-items-info", "css:finder"],
+        ["xpath=//section[@id='headerDesktopView']/div[5]/div/ul/li/div/div/button/a/span/span/span", "xpath:idRelative"],
+        ["xpath=//span/span/span", "xpath:position"]
+      ],
+      "value": "1 items"
+    }, {
+      "id": "7a9ea89c-de7a-4793-868e-f1b6b4185d24",
+      "comment": "",
+      "command": "click",
+      "target": "css=.utility-links .js-populated-cart-message",
+      "targets": [
+        ["css=.utility-links .js-populated-cart-message", "css:finder"],
+        ["xpath=//section[@id='headerDesktopView']/div[5]/div/ul/li/div/div/button/a/span/span", "xpath:idRelative"],
+        ["xpath=//span/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a14fe63e-d88c-4a3d-943a-7a7798a4376c",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.bned-title-tablet-desktop-wp .bned-cart-main-title",
+      "targets": [
+        ["css=.bned-title-tablet-desktop-wp .bned-cart-main-title", "css:finder"],
+        ["xpath=//div[3]/div/div/div/div[2]/div/div/h1", "xpath:position"]
+      ],
+      "value": "Your Shopping Cart"
+    }, {
+      "id": "3db114da-014e-441d-bbd7-fea955d55a1e",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=a > h2",
+      "targets": [
+        ["css=a > h2", "css:finder"],
+        ["xpath=//a/h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'JBL Quantum True Wireless Noise Cancelling Gaming Earbuds- Black')]", "xpath:innerText"]
+      ],
+      "value": "JBL Quantum True Wireless Noise Cancelling Gaming Earbuds- Black"
+    }, {
+      "id": "9ae105c3-43f1-4541-859a-8aa578500161",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.bned-cart-price",
+      "targets": [
+        ["css=.bned-cart-price", "css:finder"],
+        ["xpath=//div[3]/div[2]/div/div", "xpath:position"]
+      ],
+      "value": "$149.98"
+    }, {
+      "id": "b8195cf6-a17e-4f12-8308-0e04d31eef0c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.bned-radio-wp-pickup",
+      "targets": [
+        ["css=.bned-radio-wp-pickup", "css:finder"],
+        ["xpath=//div[2]/label", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "22abf520-4d9c-4ff4-b44f-6514582ac13b",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.subtotal:nth-child(2)",
+      "targets": [
+        ["css=.subtotal:nth-child(2)", "css:finder"],
+        ["xpath=//div[6]/div[3]/div/div[2]/div/div/div/div/div/div/div/div[2]", "xpath:position"]
+      ],
+      "value": "$149.98"
+    }, {
+      "id": "234c42af-d342-466d-85c4-26805a1394a3",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.handlingFees:nth-child(2)",
+      "targets": [
+        ["css=.handlingFees:nth-child(2)", "css:finder"],
+        ["xpath=//div[6]/div[3]/div/div[2]/div/div/div/div/div/div/div[2]/div[2]", "xpath:position"]
+      ],
+      "value": "$2.00"
+    }, {
+      "id": "6faac6c1-fcd5-4355-820d-0e91c4b909ce",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.bned-cart-total-item-container:nth-child(3) > .bned-cart-total-item-value",
+      "targets": [
+        ["css=.bned-cart-total-item-container:nth-child(3) > .bned-cart-total-item-value", "css:finder"],
+        ["xpath=//div[2]/div/div/div/div/div/div/div[3]/div[2]", "xpath:position"]
+      ],
+      "value": "TBD"
+    }, {
+      "id": "e3bf063f-a0ba-4ad7-abcd-d82d091b8c44",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.bned-cart-estimated-total-value",
+      "targets": [
+        ["css=.bned-cart-estimated-total-value", "css:finder"],
+        ["xpath=//div[3]/div/div[2]/div/div/div/div[2]/div[2]", "xpath:position"]
+      ],
+      "value": "$151.98"
+    }, {
+      "id": "7a3802b2-75e7-42a9-a281-afb1d01479b9",
+      "comment": "",
+      "command": "click",
+      "target": "id=js-voucher-code-text",
+      "targets": [
+        ["id=js-voucher-code-text", "id"],
+        ["name=voucherCode", "name"],
+        ["css=#js-voucher-code-text", "css:finder"],
+        ["xpath=//input[@id='js-voucher-code-text']", "xpath:attributes"],
+        ["xpath=//form[@id='applyVoucherForm']/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div/form/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3c4a1fff-790f-4d66-98fb-a9fa999e4c45",
+      "comment": "",
+      "command": "type",
+      "target": "id=js-voucher-code-text",
+      "targets": [
+        ["id=js-voucher-code-text", "id"],
+        ["name=voucherCode", "name"],
+        ["css=#js-voucher-code-text", "css:finder"],
+        ["xpath=//input[@id='js-voucher-code-text']", "xpath:attributes"],
+        ["xpath=//form[@id='applyVoucherForm']/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div/form/div/input", "xpath:position"]
+      ],
+      "value": "TEST"
+    }, {
+      "id": "17350865-ace9-42bd-80eb-3aaa735b9fbf",
+      "comment": "",
+      "command": "click",
+      "target": "id=js-voucher-apply-btn",
+      "targets": [
+        ["id=js-voucher-apply-btn", "id"],
+        ["css=#js-voucher-apply-btn", "css:finder"],
+        ["xpath=//button[@id='js-voucher-apply-btn']", "xpath:attributes"],
+        ["xpath=//form[@id='applyVoucherForm']/div/button", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div/form/div/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1c750d56-5fec-4e81-88d3-c028c64dde79",
+      "comment": "",
+      "command": "verifyText",
+      "target": "id=js-voucher-result",
+      "targets": [
+        ["id=js-voucher-result", "id"],
+        ["css=#js-voucher-result", "css:finder"],
+        ["xpath=//div[@id='js-voucher-result']", "xpath:attributes"],
+        ["xpath=//form[@id='applyVoucherForm']/div[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div/form/div[2]", "xpath:position"]
+      ],
+      "value": "The coupon code entered is not valid."
+    }, {
+      "id": "deb10063-cf63-4fa2-afba-a2793ccec657",
+      "comment": "",
+      "command": "click",
+      "target": "css=.bned-checkout-btn:nth-child(1)",
+      "targets": [
+        ["css=.bned-checkout-btn:nth-child(1)", "css:finder"],
+        ["xpath=//div[2]/div/div/div[2]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2716a2f0-12bf-49ff-bf68-9bb67efcbeef",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.btn-primary:nth-child(1)",
+      "targets": [
+        ["css=.btn-primary:nth-child(1)", "css:finder"],
+        ["xpath=//a[contains(text(),'Create Account')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/register?referer=/cart/checkout')]", "xpath:href"],
+        ["xpath=//div/div/div/div[3]/a", "xpath:position"]
+      ],
+      "value": "CREATE ACCOUNT"
+    }, {
+      "id": "9ad91e24-034c-477e-8f05-fb7007b0f3e2",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-secondary",
+      "targets": [
+        ["css=.btn-secondary", "css:finder"],
+        ["xpath=//a[contains(text(),'Proceed As Guest')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/checkout/multi')]", "xpath:href"],
+        ["xpath=//a[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fd9a8a27-6812-4955-8c13-b83f54f6e2fa",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.bned-contact-information-form .bned-checkout-section-headline",
+      "targets": [
+        ["css=.bned-contact-information-form .bned-checkout-section-headline", "css:finder"],
+        ["xpath=//h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'Contact Information')]", "xpath:innerText"]
+      ],
+      "value": "Contact Information"
+    }, {
+      "id": "a07f8b68-4fbd-4864-9c82-8179a30f9279",
+      "comment": "",
+      "command": "click",
+      "target": "id=contactInfo.firstName",
+      "targets": [
+        ["id=contactInfo.firstName", "id"],
+        ["name=firstName", "name"],
+        ["css=#contactInfo\\.firstName", "css:finder"],
+        ["xpath=//input[@id='contactInfo.firstName']", "xpath:attributes"],
+        ["xpath=//form[@id='bnedContactInfoForm']/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "83da4bb6-e1f1-4540-904e-ca7927dd2a1a",
+      "comment": "",
+      "command": "type",
+      "target": "id=contactInfo.firstName",
+      "targets": [
+        ["id=contactInfo.firstName", "id"],
+        ["name=firstName", "name"],
+        ["css=#contactInfo\\.firstName", "css:finder"],
+        ["xpath=//input[@id='contactInfo.firstName']", "xpath:attributes"],
+        ["xpath=//form[@id='bnedContactInfoForm']/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Ron"
+    }, {
+      "id": "4f24e4bb-8775-4cb5-8193-7cc2b7430e77",
+      "comment": "",
+      "command": "click",
+      "target": "id=contactInfo.lastName",
+      "targets": [
+        ["id=contactInfo.lastName", "id"],
+        ["name=lastName", "name"],
+        ["css=#contactInfo\\.lastName", "css:finder"],
+        ["xpath=//input[@id='contactInfo.lastName']", "xpath:attributes"],
+        ["xpath=//form[@id='bnedContactInfoForm']/div[2]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0f282879-6805-46bf-b8ef-c9e9c258e879",
+      "comment": "",
+      "command": "type",
+      "target": "id=contactInfo.lastName",
+      "targets": [
+        ["id=contactInfo.lastName", "id"],
+        ["name=lastName", "name"],
+        ["css=#contactInfo\\.lastName", "css:finder"],
+        ["xpath=//input[@id='contactInfo.lastName']", "xpath:attributes"],
+        ["xpath=//form[@id='bnedContactInfoForm']/div[2]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "smit"
+    }, {
+      "id": "2f9c8ba6-2d76-45b3-a6ee-4cd1beb38d41",
+      "comment": "",
+      "command": "click",
+      "target": "id=contactInfo.emailAddress",
+      "targets": [
+        ["id=contactInfo.emailAddress", "id"],
+        ["name=emailAddress", "name"],
+        ["css=#contactInfo\\.emailAddress", "css:finder"],
+        ["xpath=//input[@id='contactInfo.emailAddress']", "xpath:attributes"],
+        ["xpath=//form[@id='bnedContactInfoForm']/div[3]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "253bc180-228c-4536-9e4c-473c2498f72d",
+      "comment": "",
+      "command": "type",
+      "target": "id=contactInfo.emailAddress",
+      "targets": [
+        ["id=contactInfo.emailAddress", "id"],
+        ["name=emailAddress", "name"],
+        ["css=#contactInfo\\.emailAddress", "css:finder"],
+        ["xpath=//input[@id='contactInfo.emailAddress']", "xpath:attributes"],
+        ["xpath=//form[@id='bnedContactInfoForm']/div[3]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "rsmit@email.com"
+    }, {
+      "id": "8bd36e98-64fc-4404-ba46-65b1504bb682",
+      "comment": "",
+      "command": "click",
+      "target": "id=phone1",
+      "targets": [
+        ["id=phone1", "id"],
+        ["name=phoneNumberHidden", "name"],
+        ["css=#phone1", "css:finder"],
+        ["xpath=//input[@id='phone1']", "xpath:attributes"],
+        ["xpath=//form[@id='bnedContactInfoForm']/div[4]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "85d41766-6a50-45bd-b039-b8ecad5faf09",
+      "comment": "",
+      "command": "type",
+      "target": "id=phone1",
+      "targets": [
+        ["id=phone1", "id"],
+        ["name=phoneNumberHidden", "name"],
+        ["css=#phone1", "css:finder"],
+        ["xpath=//input[@id='phone1']", "xpath:attributes"],
+        ["xpath=//form[@id='bnedContactInfoForm']/div[4]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": "9732319098"
+    }, {
+      "id": "d214d1e3-817f-4340-beb0-391dd6e4afd2",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.bned-order-summary-order-totals:nth-child(2) .bned-checkout-total-wp:nth-child(1) > .value",
+      "targets": [
+        ["css=.bned-order-summary-order-totals:nth-child(2) .bned-checkout-total-wp:nth-child(1) > .value", "css:finder"],
+        ["xpath=//div[2]/div[3]/div/div[2]/div/div/div/div/div[2]", "xpath:position"]
+      ],
+      "value": "$149.98"
+    }, {
+      "id": "e1664856-007a-4c2a-83cc-dbba4716f0e9",
+      "comment": "",
+      "command": "click",
+      "target": "css=.bned-order-summary-order-totals:nth-child(2) .bned-checkout-total-wp:nth-child(2) > .value",
+      "targets": [
+        ["css=.bned-order-summary-order-totals:nth-child(2) .bned-checkout-total-wp:nth-child(2) > .value", "css:finder"],
+        ["xpath=//div[3]/div/div[2]/div/div/div/div[2]/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b7a1f07a-81e0-40d3-93e1-4e32b796323e",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.bned-order-summary-order-totals:nth-child(2) .bned-checkout-total-wp:nth-child(2) > .value",
+      "targets": [
+        ["css=.bned-order-summary-order-totals:nth-child(2) .bned-checkout-total-wp:nth-child(2) > .value", "css:finder"],
+        ["xpath=//div[3]/div/div[2]/div/div/div/div[2]/div[2]", "xpath:position"]
+      ],
+      "value": "$2.00"
+    }, {
+      "id": "9e20f876-e4c5-4289-b60a-f01526c08316",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.bned-order-summary-order-totals:nth-child(2) .bned-checkout-total-wp:nth-child(3) > .value",
+      "targets": [
+        ["css=.bned-order-summary-order-totals:nth-child(2) .bned-checkout-total-wp:nth-child(3) > .value", "css:finder"],
+        ["xpath=//div[3]/div/div[2]/div/div/div/div[3]/div[2]", "xpath:position"]
+      ],
+      "value": "TBD"
+    }, {
+      "id": "11afe905-3356-4390-b876-c3aa939c107d",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.bned-order-summary-order-totals:nth-child(2) .bned-total > .value",
+      "targets": [
+        ["css=.bned-order-summary-order-totals:nth-child(2) .bned-total > .value", "css:finder"],
+        ["xpath=//div[3]/div/div[2]/div/div/div/div[5]/div[2]", "xpath:position"]
+      ],
+      "value": "$151.98"
+    }, {
+      "id": "fb0cddc3-ded7-4c01-9413-d92903caeb67",
+      "comment": "",
+      "command": "click",
+      "target": "css=.bned-checkout-box-content:nth-child(3) .btn",
+      "targets": [
+        ["css=.bned-checkout-box-content:nth-child(3) .btn", "css:finder"],
+        ["xpath=//div[3]/div[3]/div/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "25c02c81-d5cd-451f-9a2e-5058dd82235c",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.bned-contact-information-form .bned-checkout-section-headline",
+      "targets": [
+        ["css=.bned-contact-information-form .bned-checkout-section-headline", "css:finder"],
+        ["xpath=//h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'Contact Information')]", "xpath:innerText"]
+      ],
+      "value": "Contact Information"
+    }, {
+      "id": "36acf52f-0363-45cb-b77a-0d35cffe2332",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.bned-checkout-box-firstName",
+      "targets": [
+        ["css=.bned-checkout-box-firstName", "css:finder"],
+        ["xpath=//div[3]/div[2]/div/div/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Ron')]", "xpath:innerText"]
+      ],
+      "value": "Ron"
+    }, {
+      "id": "f3c250ea-87c4-46c0-a5c1-7544989303d3",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.bned-checkout-box-emailAddress",
+      "targets": [
+        ["css=.bned-checkout-box-emailAddress", "css:finder"],
+        ["xpath=//div[2]/div[2]/div/span", "xpath:position"],
+        ["xpath=//span[contains(.,'rsmit@email.com')]", "xpath:innerText"]
+      ],
+      "value": "rsmit@email.com"
+    }, {
+      "id": "fd1bcaa6-6ede-490e-b094-ba7e1012d840",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.bned-checkout-box-phoneNumber",
+      "targets": [
+        ["css=.bned-checkout-box-phoneNumber", "css:finder"],
+        ["xpath=//div[3]/div/span", "xpath:position"],
+        ["xpath=//span[contains(.,'19732319098')]", "xpath:innerText"]
+      ],
+      "value": "19732319098"
+    }, {
+      "id": "042a04ed-5008-450d-90a9-3c42512ba1c8",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.bned-pickup-location-container > .bned-sub-headline",
+      "targets": [
+        ["css=.bned-pickup-location-container > .bned-sub-headline", "css:finder"],
+        ["xpath=//form[@id='bnedPickupPersonForm']/div/div/div/h3", "xpath:idRelative"],
+        ["xpath=//h3", "xpath:position"],
+        ["xpath=//h3[contains(.,'Pickup Location')]", "xpath:innerText"]
+      ],
+      "value": "Pickup Location"
+    }, {
+      "id": "4550b4e4-1d92-409f-a8f5-550426c91858",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.address-location",
+      "targets": [
+        ["css=.address-location", "css:finder"],
+        ["xpath=//form[@id='bnedPickupPersonForm']/div/div/div/div/span", "xpath:idRelative"],
+        ["xpath=//form/div/div/div/div/span", "xpath:position"]
+      ],
+      "value": "DePaul University Loop Campus & SAIC"
+    }, {
+      "id": "744b0c0b-3fb6-41cc-a481-a57c3bd4e0de",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.pickup-option-wp > .bned-sub-headline",
+      "targets": [
+        ["css=.pickup-option-wp > .bned-sub-headline", "css:finder"],
+        ["xpath=//form[@id='bnedPickupPersonForm']/div/div/div[2]/h3", "xpath:idRelative"],
+        ["xpath=//div[2]/h3", "xpath:position"],
+        ["xpath=//h3[contains(.,'Pickup Person')]", "xpath:innerText"]
+      ],
+      "value": "Pickup Person"
+    }, {
+      "id": "4042218e-db04-4156-ac9d-e65aa8ee8358",
+      "comment": "",
+      "command": "click",
+      "target": "css=.bned-radio-wp:nth-child(1)",
+      "targets": [
+        ["css=.bned-radio-wp:nth-child(1)", "css:finder"],
+        ["xpath=//form[@id='bnedPickupPersonForm']/div/div/div[2]/div/div/label", "xpath:idRelative"],
+        ["xpath=//div/div[2]/div/div/label", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6ac6ee29-8bf3-4931-8e61-f47b1b0b1a1b",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.bned-radio-wp:nth-child(1)",
+      "targets": [
+        ["css=.bned-radio-wp:nth-child(1)", "css:finder"],
+        ["xpath=//form[@id='bnedPickupPersonForm']/div/div/div[2]/div/div/label", "xpath:idRelative"],
+        ["xpath=//div/div[2]/div/div/label", "xpath:position"]
+      ],
+      "value": "I'll pick them up"
+    }, {
+      "id": "4074fc24-bd33-455a-98a6-da9958b3f8a9",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.bned-order-summary-order-totals:nth-child(2) .bned-checkout-total-wp:nth-child(1) > .value",
+      "targets": [
+        ["css=.bned-order-summary-order-totals:nth-child(2) .bned-checkout-total-wp:nth-child(1) > .value", "css:finder"],
+        ["xpath=//div[2]/div[3]/div/div[2]/div/div/div/div/div[2]", "xpath:position"]
+      ],
+      "value": "$149.98"
+    }, {
+      "id": "1363ee47-d7bb-481a-b4af-d835c62c9a11",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.bned-order-summary-order-totals:nth-child(2) .bned-checkout-total-wp:nth-child(2) > .value",
+      "targets": [
+        ["css=.bned-order-summary-order-totals:nth-child(2) .bned-checkout-total-wp:nth-child(2) > .value", "css:finder"],
+        ["xpath=//div[3]/div/div[2]/div/div/div/div[2]/div[2]", "xpath:position"]
+      ],
+      "value": "$2.00"
+    }, {
+      "id": "51d88228-d310-4ef2-a771-cd762f340830",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.bned-order-summary-order-totals:nth-child(2) .bned-checkout-total-wp:nth-child(3) > .value",
+      "targets": [
+        ["css=.bned-order-summary-order-totals:nth-child(2) .bned-checkout-total-wp:nth-child(3) > .value", "css:finder"],
+        ["xpath=//div[3]/div/div[2]/div/div/div/div[3]/div[2]", "xpath:position"]
+      ],
+      "value": "TBD"
+    }, {
+      "id": "a0d5b894-4a39-4409-81ad-4e257ed41a69",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.bned-order-summary-order-totals:nth-child(2) .bned-total > .value",
+      "targets": [
+        ["css=.bned-order-summary-order-totals:nth-child(2) .bned-total > .value", "css:finder"],
+        ["xpath=//div[3]/div/div[2]/div/div/div/div[5]/div[2]", "xpath:position"]
+      ],
+      "value": "$151.98"
+    }, {
+      "id": "09b8b51c-6e1c-49ad-bea1-c4cea7bebde7",
+      "comment": "",
+      "command": "verifyText",
+      "target": "linkText=JBL Quantum True Wireless Noise Cancelling Gaming Earbuds- Black",
+      "targets": [
+        ["linkText=JBL Quantum True Wireless Noise Cancelling Gaming Earbuds- Black", "linkText"],
+        ["css=.bned-order-summary-pick-up-items:nth-child(4) .bned-order-summary-entry-details-wp a", "css:finder"],
+        ["xpath=(//a[contains(text(),'JBL Quantum True Wireless Noise Cancelling Gaming Earbuds- Black')])[2]", "xpath:link"],
+        ["xpath=(//a[contains(@href, '/JBL/JBL-Quantum-True-Wireless-Noise-Cancelling-Gaming-Earbuds--Black/p/668972707?currentCampus=85')])[4]", "xpath:href"],
+        ["xpath=//div[3]/div/div[2]/div/div[3]/div[2]/div[2]/div[2]/div/div/a", "xpath:position"]
+      ],
+      "value": "JBL Quantum True Wireless Noise Cancelling Gaming Earbuds- Black"
+    }, {
+      "id": "0ef7d66e-235a-455c-9408-db8306931ebd",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.bned-order-summary-pick-up-items:nth-child(4) .bned-order-summary-entry-total",
+      "targets": [
+        ["css=.bned-order-summary-pick-up-items:nth-child(4) .bned-order-summary-entry-total", "css:finder"],
+        ["xpath=//div[3]/div/div[2]/div/div[3]/div[2]/div[2]/div[2]/div[2]", "xpath:position"]
+      ],
+      "value": "$149.98"
+    }, {
+      "id": "b4a2a692-1fa2-4ebc-81ef-822674ec5fa4",
+      "comment": "",
+      "command": "click",
+      "target": "css=.bned-checkout-box-content:nth-child(2) .btn",
+      "targets": [
+        ["css=.bned-checkout-box-content:nth-child(2) .btn", "css:finder"],
+        ["xpath=//div[2]/div[2]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "361b2438-4528-404c-80a8-3bf26db19304",
+      "comment": "",
+      "command": "pause",
+      "target": "2000",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a52ecee0-f1e3-4ab8-87f5-ba4aa820a3f3",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.bned-checkout-section-headline",
+      "targets": [
+        ["css=.bned-checkout-section-headline", "css:finder"],
+        ["xpath=//h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'Payment Information')]", "xpath:innerText"]
+      ],
+      "value": "Payment Information"
+    }, {
+      "id": "b74ccd35-ce26-4853-a3be-bce39ed4855a",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.bned-order-summary-order-totals:nth-child(2) .bned-checkout-total-wp:nth-child(1) > .value",
+      "targets": [
+        ["css=.bned-order-summary-order-totals:nth-child(2) .bned-checkout-total-wp:nth-child(1) > .value", "css:finder"],
+        ["xpath=//div[2]/div[3]/div/div[2]/div/div/div/div/div[2]", "xpath:position"]
+      ],
+      "value": "$149.98"
+    }, {
+      "id": "5812d639-6a82-490b-a664-e04a4d2f7621",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.bned-order-summary-order-totals:nth-child(2) .bned-checkout-total-wp:nth-child(2) > .value",
+      "targets": [
+        ["css=.bned-order-summary-order-totals:nth-child(2) .bned-checkout-total-wp:nth-child(2) > .value", "css:finder"],
+        ["xpath=//div[3]/div/div[2]/div/div/div/div[2]/div[2]", "xpath:position"]
+      ],
+      "value": "$2.00"
+    }, {
+      "id": "84c6e97d-2260-4252-b7d1-c085b859eaaa",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.bned-order-summary-order-totals:nth-child(2) .bned-checkout-total-wp:nth-child(3) > .value",
+      "targets": [
+        ["css=.bned-order-summary-order-totals:nth-child(2) .bned-checkout-total-wp:nth-child(3) > .value", "css:finder"],
+        ["xpath=//div[3]/div/div[2]/div/div/div/div[3]/div[2]", "xpath:position"]
+      ],
+      "value": "$15.58"
+    }, {
+      "id": "18df5ace-0432-4868-b2d9-4b5e0a8c78bb",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.bned-order-summary-order-totals:nth-child(2) .bned-total > .value",
+      "targets": [
+        ["css=.bned-order-summary-order-totals:nth-child(2) .bned-total > .value", "css:finder"],
+        ["xpath=//div[3]/div/div[2]/div/div/div/div[5]/div[2]", "xpath:position"]
+      ],
+      "value": "$167.56"
+    }, {
+      "id": "bbb922ce-28d5-4197-aedb-294d7c3ca3a7",
+      "comment": "",
+      "command": "verifyText",
+      "target": "linkText=JBL Quantum True Wireless Noise Cancelling Gaming Earbuds- Black",
+      "targets": [
+        ["linkText=JBL Quantum True Wireless Noise Cancelling Gaming Earbuds- Black", "linkText"],
+        ["css=.bned-order-summary-pick-up-items:nth-child(4) .bned-order-summary-entry-details-wp a", "css:finder"],
+        ["xpath=(//a[contains(text(),'JBL Quantum True Wireless Noise Cancelling Gaming Earbuds- Black')])[2]", "xpath:link"],
+        ["xpath=(//a[contains(@href, '/JBL/JBL-Quantum-True-Wireless-Noise-Cancelling-Gaming-Earbuds--Black/p/668972707?currentCampus=85')])[4]", "xpath:href"],
+        ["xpath=//div[3]/div/div[2]/div/div[3]/div[2]/div[2]/div[2]/div/div/a", "xpath:position"]
+      ],
+      "value": "JBL Quantum True Wireless Noise Cancelling Gaming Earbuds- Black"
+    }, {
+      "id": "385113da-f3ab-4a57-9585-ca0d8f3f590a",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.bned-order-summary-pick-up-items:nth-child(4) .bned-order-summary-entry-total",
+      "targets": [
+        ["css=.bned-order-summary-pick-up-items:nth-child(4) .bned-order-summary-entry-total", "css:finder"],
+        ["xpath=//div[3]/div/div[2]/div/div[3]/div[2]/div[2]/div[2]/div[2]", "xpath:position"]
+      ],
+      "value": "$149.98"
+    }, {
+      "id": "ef005c0d-5962-42c7-bc79-fce9a247604a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.bned-go-cart-text",
+      "targets": [
+        ["css=.bned-go-cart-text", "css:finder"],
+        ["xpath=//a/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a3e714a9-dc77-493b-86cf-150e9e86d07c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.bned-icon-delete path",
+      "targets": [
+        ["css=.bned-icon-delete path", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "cc8da95e-d6eb-4fc5-b237-12c7c5f17179",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.bned-empty-cart-header > h2",
+      "targets": [
+        ["css=.bned-empty-cart-header > h2", "css:finder"],
+        ["xpath=//section/h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'Your cart is empty')]", "xpath:innerText"]
+      ],
+      "value": "Your cart is empty"
+    }, {
+      "id": "a23d701f-6469-4e34-a8d1-260c06d872ce",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "7b0c6262-47ee-4199-bdfc-db0f6fed82a6",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["29ac09c6-800b-4303-81c6-a2abf9887778"]
+  }],
+  "urls": ["https://depaul.bncollege.com/"],
+  "plugins": []
+}

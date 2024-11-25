@@ -1,0 +1,250 @@
+PROCESS 0 :
+
+Microsoft Windows [Version 10.0.22621.1265]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Distributed System\BLOCKCHAIN>javac -cp "gson-2.8.2.jar" Blockchain.java
+
+C:\Distributed System\BLOCKCHAIN>java -cp ".;gson-2.8.2.jar" Blockchain 0
+Hello from Process 0
+Starting Key Server input thread using 4710
+Starting the Unverified Block Server input thread using 4820
+java.net.BindException: Address already in use: bind
+java.net.BindException: Address already in use: bind
+Public key sent to process 0
+Using input file: BlockInput0.txt
+Unverified Block sent to process 0
+Unverified Block sent to process 0
+Unverified Block sent to process 0
+Unverified Block sent to process 0
+
+ JSON String list is: [
+  {
+    "BlID": "641429f1-19da-4b1a-a93e-60228476cc03",
+    "TSP": " 2023-02-28.22:01:33.0",
+    "Fname": "ROHAN",
+    "Lname": "DHOYDA",
+    "SSNum": "668-775-869",
+    "DOB": "03-19-1995",
+    "WinningHash": "1721",
+    "Diag": " Captain America",
+    "Treat": "Avengers",
+    "Rx": "scd",
+    "blockNumber": 0,
+    "processID": 0
+  },
+  {
+    "BlID": "bfe2120f-ce8f-4678-beb6-d9efa3e8c1ba",
+    "TSP": "1677643294198",
+    "Fname": "John",
+    "Lname": "Smith",
+    "SSNum": "123-45-6789",
+    "DOB": "1996.03.07",
+    "WinningHash": "4f2e14e4da014f0435588fc3c6424b43de878cb1555d91fcc2c2dfa63c18bdd3",
+    "Diag": "Chickenpox",
+    "Treat": "BedRest",
+    "Rx": "aspirin",
+    "blockNumber": 0,
+    "processID": 0
+  },
+  {
+    "BlID": "114fbc4e-d117-40c8-9312-4ce7ee819c9c",
+    "TSP": "1677643294306",
+    "Fname": "Joe",
+    "Lname": "Blow",
+    "SSNum": "123-45-6888",
+    "DOB": "1996.03.07",
+    "WinningHash": "726c5859384e8564eb2f24296d97f62de1a4e03d23e5893e6d2d680ff0f39fd9",
+    "Diag": "Smallpox",
+    "Treat": "BedRest",
+    "Rx": "Whiskey",
+    "blockNumber": 0,
+    "processID": 0
+  },
+  {
+    "BlID": "19677212-f54f-4fd2-bb5b-8b63eb7a2388",
+    "TSP": "1677643294312",
+    "Fname": "Julie",
+    "Lname": "Wilson",
+    "SSNum": "123-45-6999",
+    "DOB": "1996.03.07",
+    "WinningHash": "92e714872a89ee4124861c2f55bec58ce1640b3c72062900b5dd567d451777df",
+    "Diag": "Insomnia",
+    "Treat": "Exercise",
+    "Rx": "HotPeppers",
+    "blockNumber": 0,
+    "processID": 0
+  },
+  {
+    "BlID": "fbc5ae91-05b2-442b-a4a9-877d259a7d94",
+    "TSP": "1677643294314",
+    "Fname": "Wayne",
+    "Lname": "Blaine",
+    "SSNum": "123-45-6777",
+    "DOB": "1942.07.07",
+    "WinningHash": "ca2a02d9e2a76bd9949c724644a883edd2c2e3d596622b5ed63e9d84e02e7021",
+    "Diag": "Measles",
+    "Treat": "WaitToGetBetter",
+    "Rx": "CodLiverOil",
+    "blockNumber": 0,
+    "processID": 0
+  }
+]
+
+PROCESS 1:
+
+C:\Distributed System\BLOCKCHAIN>
+
+Microsoft Windows [Version 10.0.22621.1265]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Distributed System\BLOCKCHAIN>javac -cp "gson-2.8.2.jar" Blockchain.java
+
+C:\Distributed System\BLOCKCHAIN>java -cp ".;gson-2.8.2.jar" Blockchain 1
+Hello from Process 1
+Starting Key Server input thread using 4711
+Starting the Unverified Block Server input thread using 4821
+Got key: Sun RSA public key, 1024 bits
+Public key sent to process 1
+Using input file: BlockInput1.txt
+Unverified Block sent to process 1
+Unverified Block sent to process 1
+Unverified Block sent to process 1
+Unverified Block sent to process 1
+
+ JSON String list is: [
+  {
+    "BlID": "09574062-2595-45d0-9d3e-a1e4c7c8cd18",
+    "TSP": "1677643387354",
+    "Fname": "Rita",
+    "Lname": "Vita",
+    "SSNum": "999-456-789",
+    "DOB": "1992.01.31",
+    "WinningHash": "1b06b90ac72f10fdb852136f9c284976ce178cb7588aa33ff80c06011b594b25",
+    "Diag": "ObessivePersonality",
+    "Treat": "TryToRelax",
+    "Rx": "Ibuprofen",
+    "blockNumber": 0,
+    "processID": 0
+  },
+  {
+    "BlID": "6552babf-9aba-4db2-96e6-4184f841006b",
+    "TSP": "1677643387451",
+    "Fname": "Wei",
+    "Lname": "Xu",
+    "SSNum": "123-456-333",
+    "DOB": "1996.03.22",
+    "WinningHash": "db9f38b1a32e01805397249df9d94d214959a6fe8684cf34e79423a2a3735626",
+    "Diag": "Shingles",
+    "Treat": "WaitForRelief",
+    "Rx": "Zovirax",
+    "blockNumber": 0,
+    "processID": 0
+  },
+  {
+    "BlID": "7fdb5dd1-deaa-428b-8b66-a53098b674d9",
+    "TSP": "1677643387455",
+    "Fname": "Sally",
+    "Lname": "McCutty",
+    "SSNum": "123-456-999",
+    "DOB": "1970.01.01",
+    "WinningHash": "fa2b0465f83105e618e3e97fe75d51a4182763bf161fd2d0e42fe5a5deb1f4c4",
+    "Diag": "Migraine",
+    "Treat": "IcePack",
+    "Rx": "Almotriptan",
+    "blockNumber": 0,
+    "processID": 0
+  },
+  {
+    "BlID": "8566eabb-2feb-4abf-ae79-5308020d664b",
+    "TSP": "1677643387457",
+    "Fname": "Bruce",
+    "Lname": "Lee",
+    "SSNum": "456-789-123",
+    "DOB": "1940.11.27",
+    "WinningHash": "164e332942baabb38111f88096c7c84b22c61c23595257c5123f33fe8c62415e",
+    "Diag": "SoreStomach",
+    "Treat": "LessCombat",
+    "Rx": "Vicodine",
+    "blockNumber": 0,
+    "processID": 0
+  }
+]
+
+PROCESS 2
+
+Microsoft Windows [Version 10.0.22621.1265]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Distributed System\BLOCKCHAIN>javac -cp "gson-2.8.2.jar" Blockchain.java
+
+C:\Distributed System\BLOCKCHAIN>java -cp ".;gson-2.8.2.jar" Blockchain 2
+Hello from Process 2
+Starting Key Server input thread using 4712
+Starting the Unverified Block Server input thread using 4822
+Got key: Sun RSA public key, 1024 bits
+Public key sent to process 2
+Using input file: BlockInput2.txt
+Unverified Block sent to process 2
+Unverified Block sent to process 2
+Unverified Block sent to process 2
+Unverified Block sent to process 2
+
+ JSON String list is: [
+  {
+    "BlID": "113b68f9-a1cb-4be0-832f-31e8426facb7",
+    "TSP": "1677643544936",
+    "Fname": "Helen",
+    "Lname": "Keller",
+    "SSNum": "666-45-6789",
+    "DOB": "1880.06.27",
+    "WinningHash": "3c0a34fbbcd1841aa239c0827abb40e8b0fd92d77c4826658c70d3504429f8fb",
+    "Diag": "Arthritis",
+    "Treat": "WarmCloths",
+    "Rx": "Aspirin",
+    "blockNumber": 0,
+    "processID": 0
+  },
+  {
+    "BlID": "405a1786-dc85-44f3-a2d4-a905810b1955",
+    "TSP": "1677643545001",
+    "Fname": "Abraham",
+    "Lname": "Lincoln",
+    "SSNum": "444-45-6888",
+    "DOB": "1809.02.12",
+    "WinningHash": "708bd4d64d81a6ff9d29c8aa2d34a332dd8cf1112c1d706a1dc1ba8d7d6d0598",
+    "Diag": "GreviousWound",
+    "Treat": "Surgery",
+    "Rx": "Whiskey",
+    "blockNumber": 0,
+    "processID": 0
+  },
+  {
+    "BlID": "0959413d-595e-4a40-9a37-508860e32565",
+    "TSP": "1677643545003",
+    "Fname": "John",
+    "Lname": "Kennedy",
+    "SSNum": "333-45-6999",
+    "DOB": "1917.05.29",
+    "WinningHash": "f01454c9bbc5d4e8fdf5af80015f3d9a7dbccde31a5bbc27007cc8efe730f9a9",
+    "Diag": "AddisonsDisease",
+    "Treat": "DrugTherapy",
+    "Rx": "Steroids",
+    "blockNumber": 0,
+    "processID": 0
+  },
+  {
+    "BlID": "5f028199-f157-457b-b5b0-3119223683b5",
+    "TSP": "1677643545005",
+    "Fname": "Joe",
+    "Lname": "DiMaggio",
+    "SSNum": "111-22-3333",
+    "DOB": "1914.11.25",
+    "WinningHash": "553a2f91b0b4759c379382f0219a76acd186ec34163c62bbaa891ad94b9c544a",
+    "Diag": "SoreKnees",
+    "Treat": "RestFromSports",
+    "Rx": "Aspirin",
+    "blockNumber": 0,
+    "processID": 0
+  }
+]

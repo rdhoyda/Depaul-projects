@@ -1,0 +1,354 @@
+Assignment 1:
+
+1: 
+
+Select location_id, street_address, city, state_province
+From LOCATIONS
+Where UPPER(city) = 'TOKYO';
+
+LOCATION_ID  STREET_ADDRESS      CITY        STATE_PROVINCE
+-----------  --------------    -----------   --------------
+1200         2017 Shinjuku-ku   Tokyo        Tokyo Pre
+
+2:
+
+Select location_id, street_address || ', ' || city || ', ' || state_province || ', ' || postal_code || ', ' || country_id AS Emp_Address
+From LOCATIONS
+Where UPPER(city) LIKE 'T%';
+
+
+LOCATION_ID  EMP_ADDRESS      
+-----------  --------------
+1200	     2017 Shinjuku-ku, Tokyo, Tokyo Pre, 1689, JP
+1800	     147 Spadina Ave, Toronto, Ontario, M5V 2L7, CA
+
+3:
+
+SELECT e.Employee_ID AS ID,
+       e.First_Name AS Name,
+       d.Employee_ID AS SupervisorID,  
+       d.First_name AS SupervisorName
+FROM Employees e
+LEFT JOIN Employees d ON e.Manager_ID = d.Employee_ID;  
+
+ID NAME                 SUPERVISORID SUPERVISORNAME      
+---------- -------------------- ------------ --------------------
+       100 Steven                                                
+       101 Neena                         100 Steven              
+       102 Lex                           100 Steven              
+       103 Alexander                     102 Lex                 
+       104 Bruce                         103 Alexander           
+       105 David                         103 Alexander           
+       106 Valli                         103 Alexander           
+       107 Diana                         103 Alexander           
+       108 Nancy                         101 Neena               
+       109 Daniel                        108 Nancy               
+       110 John                          108 Nancy               
+
+        ID NAME                 SUPERVISORID SUPERVISORNAME      
+---------- -------------------- ------------ --------------------
+       111 Ismael                        108 Nancy               
+       112 Jose Manuel                   108 Nancy               
+       113 Luis                          108 Nancy               
+       114 Den                           100 Steven              
+       115 Alexander                     114 Den                 
+       116 Shelli                        114 Den                 
+       117 Sigal                         114 Den                 
+       118 Guy                           114 Den                 
+       119 Karen                         114 Den                 
+       120 Matthew                       100 Steven              
+       121 Adam                          100 Steven              
+
+        ID NAME                 SUPERVISORID SUPERVISORNAME      
+---------- -------------------- ------------ --------------------
+       122 Payam                         100 Steven              
+       123 Shanta                        100 Steven              
+       124 Kevin                         100 Steven              
+       125 Julia                         120 Matthew             
+       126 Irene                         120 Matthew             
+       127 James                         120 Matthew             
+       128 Steven                        120 Matthew             
+       129 Laura                         121 Adam                
+       130 Mozhe                         121 Adam                
+       131 James                         121 Adam                
+       132 TJ                            121 Adam                
+
+        ID NAME                 SUPERVISORID SUPERVISORNAME      
+---------- -------------------- ------------ --------------------
+       133 Jason                         122 Payam               
+       134 Michael                       122 Payam               
+       135 Ki                            122 Payam               
+       136 Hazel                         122 Payam               
+       137 Renske                        123 Shanta              
+       138 Stephen                       123 Shanta              
+       139 John                          123 Shanta              
+       140 Joshua                        123 Shanta              
+       141 Trenna                        124 Kevin               
+       142 Curtis                        124 Kevin               
+       143 Randall                       124 Kevin               
+
+        ID NAME                 SUPERVISORID SUPERVISORNAME      
+---------- -------------------- ------------ --------------------
+       144 Peter                         124 Kevin               
+       145 John                          100 Steven              
+       146 Karen                         100 Steven              
+       147 Alberto                       100 Steven              
+       148 Gerald                        100 Steven              
+       149 Eleni                         100 Steven              
+       150 Peter                         145 John                
+       151 David                         145 John                
+       152 Peter                         145 John                
+       153 Christopher                   145 John                
+       154 Nanette                       145 John                
+
+        ID NAME                 SUPERVISORID SUPERVISORNAME      
+---------- -------------------- ------------ --------------------
+       155 Oliver                        145 John                
+       156 Janette                       146 Karen               
+       157 Patrick                       146 Karen               
+       158 Allan                         146 Karen               
+       159 Lindsey                       146 Karen               
+       160 Louise                        146 Karen               
+       161 Sarath                        146 Karen               
+       162 Clara                         147 Alberto             
+       163 Danielle                      147 Alberto             
+       164 Mattea                        147 Alberto             
+       165 David                         147 Alberto             
+
+        ID NAME                 SUPERVISORID SUPERVISORNAME      
+---------- -------------------- ------------ --------------------
+       166 Sundar                        147 Alberto             
+       167 Amit                          147 Alberto             
+       168 Lisa                          148 Gerald              
+       169 Harrison                      148 Gerald              
+       170 Tayler                        148 Gerald              
+       171 William                       148 Gerald              
+       172 Elizabeth                     148 Gerald              
+       173 Sundita                       148 Gerald              
+       174 Ellen                         149 Eleni               
+       175 Alyssa                        149 Eleni               
+       176 Jonathon                      149 Eleni               
+
+        ID NAME                 SUPERVISORID SUPERVISORNAME      
+---------- -------------------- ------------ --------------------
+       177 Jack                          149 Eleni               
+       178 Kimberely                     149 Eleni               
+       179 Charles                       149 Eleni               
+       180 Winston                       120 Matthew             
+       181 Jean                          120 Matthew             
+       182 Martha                        120 Matthew             
+       183 Girard                        120 Matthew             
+       184 Nandita                       121 Adam                
+       185 Alexis                        121 Adam                
+       186 Julia                         121 Adam                
+       187 Anthony                       121 Adam                
+
+        ID NAME                 SUPERVISORID SUPERVISORNAME      
+---------- -------------------- ------------ --------------------
+       188 Kelly                         122 Payam               
+       189 Jennifer                      122 Payam               
+       190 Timothy                       122 Payam               
+       191 Randall                       122 Payam               
+       192 Sarah                         123 Shanta              
+       193 Britney                       123 Shanta              
+       194 Samuel                        123 Shanta              
+       195 Vance                         123 Shanta              
+       196 Alana                         124 Kevin               
+       197 Kevin                         124 Kevin               
+       198 Donald                        124 Kevin               
+
+        ID NAME                 SUPERVISORID SUPERVISORNAME      
+---------- -------------------- ------------ --------------------
+       199 Douglas                       124 Kevin               
+       200 Jennifer                      101 Neena               
+       201 Michael                       100 Steven              
+       202 Pat                           201 Michael             
+       203 Susan                         101 Neena               
+       204 Hermann                       101 Neena               
+       205 Shelley                       101 Neena               
+       206 William                       205 Shelley             
+
+4:
+SELECT d.DEPARTMENT_ID AS "Department Number",
+       d.DEPARTMENT_NAME AS "Department Name",
+       COUNT(e.EMPLOYEE_ID) AS "Number of Employees"
+FROM DEPARTMENTS D
+JOIN EMPLOYEES e ON d.DEPARTMENT_ID = e.DEPARTMENT_ID
+GROUP BY d.DEPARTMENT_ID, d.DEPARTMENT_NAME
+
+Department Number Department Name                Number of Employees
+----------------- ------------------------------ -------------------
+               60 IT                                               5
+               80 Sales                                           34
+              110 Accounting                                       2
+               30 Purchasing                                       6
+               50 Shipping                                        45
+               70 Public Relations                                 1
+               90 Executive                                        3
+              100 Finance                                          6
+               10 Administration                                   1
+               20 Marketing                                        2
+               40 Human Resources                                  1
+
+11 rows selected. 
+
+5:
+SELECT d.DEPARTMENT_ID AS "Department ID",
+       d.DEPARTMENT_NAME AS "Department Name",
+       SUM(e.salary) AS "Total Salary"
+FROM DEPARTMENTS d
+INNER JOIN EMPLOYEES e ON d.DEPARTMENT_ID = e.DEPARTMENT_ID
+GROUP BY d.DEPARTMENT_ID, d.DEPARTMENT_NAME
+HAVING COUNT(DISTINCT e.EMPLOYEE_ID) > 0
+ORDER BY d.DEPARTMENT_ID;
+
+
+Department ID Department Name                Total Salary
+------------- ------------------------------ ------------
+           10 Administration                         4400
+           20 Marketing                             19000
+           30 Purchasing                            24900
+           40 Human Resources                        6500
+           50 Shipping                             156400
+           60 IT                                    28800
+           70 Public Relations                      10000
+           80 Sales                                304500
+           90 Executive                             58000
+          100 Finance                               51600
+          110 Accounting                            20300
+
+6:
+SELECT d.department_id AS "Department ID",
+       d.department_name AS "Department Name",
+       l.street_address || ', ' || l.city || ', ' || l.state_province || ', ' || l.postal_code || ', ' || l.country_id AS "Address"
+FROM departments d
+INNER JOIN locations l ON d.location_id = l.location_id
+WHERE d.manager_id IS NOT NULL;
+
+Department ID Department Name                Address                                                                                                              
+------------- ------------------------------ ---------------------------------------------------------------------------------------------------------------------
+           60 IT                             2014 Jabberwocky Rd, Southlake, Texas, 26192, US                                                                     
+           50 Shipping                       2011 Interiors Blvd, San Francisco, California, 99236, US                                                            
+           10 Administration                 2004 Charade Rd, Seattle, Washington, 98199, US                                                                      
+           30 Purchasing                     2004 Charade Rd, Seattle, Washington, 98199, US                                                                      
+           90 Executive                      2004 Charade Rd, Seattle, Washington, 98199, US                                                                      
+          100 Finance                        2004 Charade Rd, Seattle, Washington, 98199, US                                                                      
+          110 Accounting                     2004 Charade Rd, Seattle, Washington, 98199, US                                                                      
+           20 Marketing                      147 Spadina Ave, Toronto, Ontario, M5V 2L7, CA                                                                       
+           40 Human Resources                8204 Arthur St, London, , , UK                                                                                       
+           80 Sales                          Magdalen Centre, Oxford, Oxford, OX9 9ZB, UK                                                                         
+           70 Public Relations               Schwanthalerstr. 7031, Munich, Bavaria, 80925, DE 
+
+7:
+SELECT e.EMPLOYEE_ID AS "Employee ID",
+       e.LAST_NAME || ', ' || e.FIRST_NAME AS "Full Name",
+       e.DEPARTMENT_ID AS "Department ID"
+FROM EMPLOYEES e WHERE e.LAST_NAME IN (
+    SELECT LAST_NAME FROM employees
+    GROUP BY LAST_NAME
+    HAVING COUNT(*) > 1
+)
+ORDER BY e.LAST_NAME;
+
+Employee ID Full Name                                       Department ID
+----------- ----------------------------------------------- -------------
+        154 Cambrault, Nanette                                         80
+        148 Cambrault, Gerald                                          80
+        178 Grant, Kimberely                                             
+        199 Grant, Douglas                                             50
+        100 King, Steven                                               90
+        156 King, Janette                                              80
+        159 Smith, Lindsey                                             80
+        171 Smith, William                                             80
+        180 Taylor, Winston                                            50
+        176 Taylor, Jonathon                                           80
+
+8:
+
+SELECT e.employee_id, 
+       e.last_name || ' ' || e.first_name AS Full_Name, 
+       d.department_name AS DEPARTMENT_NAME, 
+       e.manager_id AS Immediate_supervisor_id, 
+       d.manager_id AS Department_head_id
+FROM employees e
+JOIN departments d ON e.department_id = d.department_id
+WHERE e.department_id = 80 AND e.manager_id != d.manager_id;
+
+EMPLOYEE_ID Full Name                                      DEPARTMENT_NAME                IMMEDIATE_SUPERVISOR_ID DEPARTMENT_HEAD_ID
+----------- ---------------------------------------------- ------------------------------ ----------------------- ------------------
+        145 Russell John                                   Sales                                              100                145
+        146 Partners Karen                                 Sales                                              100                145
+        147 Errazuriz Alberto                              Sales                                              100                145
+        148 Cambrault Gerald                               Sales                                              100                145
+        149 Zlotkey Eleni                                  Sales                                              100                145
+        156 King Janette                                   Sales                                              146                145
+        157 Sully Patrick                                  Sales                                              146                145
+        158 McEwen Allan                                   Sales                                              146                145
+        159 Smith Lindsey                                  Sales                                              146                145
+        160 Doran Louise                                   Sales                                              146                145
+        161 Sewall Sarath                                  Sales                                              146                145
+
+EMPLOYEE_ID Full Name                                      DEPARTMENT_NAME                IMMEDIATE_SUPERVISOR_ID DEPARTMENT_HEAD_ID
+----------- ---------------------------------------------- ------------------------------ ----------------------- ------------------
+        162 Vishney Clara                                  Sales                                              147                145
+        163 Greene Danielle                                Sales                                              147                145
+        164 Marvins Mattea                                 Sales                                              147                145
+        165 Lee David                                      Sales                                              147                145
+        166 Ande Sundar                                    Sales                                              147                145
+        167 Banda Amit                                     Sales                                              147                145
+        168 Ozer Lisa                                      Sales                                              148                145
+        169 Bloom Harrison                                 Sales                                              148                145
+        170 Fox Tayler                                     Sales                                              148                145
+        171 Smith William                                  Sales                                              148                145
+        172 Bates Elizabeth                                Sales                                              148                145
+
+EMPLOYEE_ID Full Name                                      DEPARTMENT_NAME                IMMEDIATE_SUPERVISOR_ID DEPARTMENT_HEAD_ID
+----------- ---------------------------------------------- ------------------------------ ----------------------- ------------------
+        173 Kumar Sundita                                  Sales                                              148                145
+        174 Abel Ellen                                     Sales                                              149                145
+        175 Hutton Alyssa                                  Sales                                              149                145
+        176 Taylor Jonathon                                Sales                                              149                145
+        177 Livingston Jack                                Sales                                              149                145
+        179 Johnson Charles                                Sales                                              149                145
+
+9:
+
+DECLARE
+  lastname VARCHAR2(25) := 'Wabash';
+  income NUMBER(9, 2);
+BEGIN
+  income := 10000;
+
+  DBMS_OUTPUT.PUT_LINE('Lastname: ' || lastname || '.');
+  DBMS_OUTPUT.PUT_LINE('Income: $' || TO_CHAR(income, '$99,999'));
+END;
+
+OUTPUT:
+----------------------
+
+Lastname: Wabash.
+Income: $10,000.
+
+10:
+<<OUTER_BLOCK>>
+DECLARE
+lastname employees.last_name%TYPE;
+BEGIN
+lastname := 'Wabash';
+DBMS_OUTPUT.PUT_LINE('The last name is: ' || lastname ||'.');
+<<INNER_BLOCK>>
+familyname VARCHAR2(25) := 'Adams';
+DBMS_OUTPUT.PUT_LINE('Familyname: ' || familyname ||'.' );
+DBMS_OUTPUT.PUT_LINE('Inner Block Lastname: ' || lastname ||'.');
+END INNER_BLOCK;
+END OUTER_BLOCK;
+
+OUTPUT:
+----------------------
+
+The last name is: Wabash.
+Familyname: Adams.
+Inner Block Lastname: Wabash.
+
+
+

@@ -1,0 +1,150 @@
+/*
+Q1 
+1. T 
+2. F
+3. F
+4. T
+5. T
+
+
+Q2.(1) c
+
+Q2 (2) e
+*/
+--Q3)
+
+-------------------------------------------Query 3---------------------------------------------
+SET SERVEROUTPUT ON
+DECLARE
+  Exceed_Limit EXCEPTION; 
+  counter_value_tracker INTEGER := 2;  
+
+BEGIN
+  FOR counter IN 2..7 LOOP 
+
+    DBMS_OUTPUT.PUT_LINE('My Counter value: ' || counter_value_tracker); 
+
+    IF counter_value_tracker > 7 THEN  
+      RAISE Exceed_Limit;  
+    END IF;
+
+    counter_value_tracker := counter_value_tracker + 2;  
+
+
+  END LOOP;
+
+EXCEPTION
+  WHEN Exceed_Limit THEN  
+    DBMS_OUTPUT.PUT_LINE('Error:Your are seeing this error because the counter exceeded the limit of 7.');
+END;
+/
+-------------------------------------------Query 3 OUTPUT---------------------------------------------
+My Counter value: 2
+My Counter value: 4
+My Counter value: 6
+My Counter value: 8
+Error:Your are seeing this error because the counter exceeded the limit of 7.
+
+-- Q4)
+-------------------------------------------Query 4---------------------------------------------
+DECLARE
+  invalid_incentive EXCEPTION;  -- Declare the exception
+  bonus NUMBER;              -- Declare the bonus variable
+
+BEGIN
+  FOR staff_info IN (SELECT empno, sal FROM emp) LOOP  
+    bonus := staff_info.sal * 0.2;  
+
+    BEGIN  -- Start of sub-block
+      IF bonus < 250 THEN
+        RAISE invalid_incentive; 
+      END IF;
+    EXCEPTION
+      WHEN invalid_incentive THEN  -- Handle invalid_bonus exception within the sub-block
+        DBMS_OUTPUT.PUT_LINE('Employee ID: ' || staff_info.empno || ' - Bonus now adjusted back to $250');
+        bonus := 250;  
+    END;  -- End of sub-block
+
+    DBMS_OUTPUT.PUT_LINE('Employee ID: ' || staff_info.empno || ' - Bonus: $' || bonus);  -- Print bonus
+  END LOOP;
+END;
+/
+----------------------------------------Query 4 OUTPUT-------------------------------------------
+PL/SQL procedure successfully completed.
+
+Employee ID: 7369 - Bonus now adjusted back to $250
+Employee ID: 7369 - Bonus: $250
+Employee ID: 7499 - Bonus: $320
+Employee ID: 7521 - Bonus: $250
+Employee ID: 7566 - Bonus: $595
+Employee ID: 7654 - Bonus: $250
+Employee ID: 7698 - Bonus: $570
+Employee ID: 7782 - Bonus: $490
+Employee ID: 7788 - Bonus: $600
+Employee ID: 7839 - Bonus: $1000
+Employee ID: 7844 - Bonus: $300
+Employee ID: 7876 - Bonus now adjusted back to $250
+Employee ID: 7876 - Bonus: $250
+Employee ID: 7900 - Bonus now adjusted back to $250
+Employee ID: 7900 - Bonus: $250
+Employee ID: 7902 - Bonus: $600
+Employee ID: 7934 - Bonus: $260
+
+-- Q5)
+-------------------------------------Query 5---------------------------------------------------------------
+SET SERVEROUTPUT ON
+DROP TABLE log_error; -- in case you have that table created, otherwise ignore this.
+
+CREATE TABLE log_error (
+  Occur_date DATE DEFAULT SYSDATE,
+  Username VARCHAR2(15) DEFAULT USER,
+  Err_code NUMBER,
+  Err_msg VARCHAR2(255)
+);
+
+ --   ** Here, we use "SYSDATE" for Occur_date, "USER" for username.
+SET SERVEROUTPUT ON;
+SELECT * FROM dept WHERE deptno = 50;
+UPDATE dept SET dname = 'NEW_NAME', loc = 'NEW_LOCATION' WHERE deptno = 50;
+INSERT INTO dept VALUES (51, 'FUTURE', 'BOSTON');
+
+DECLARE
+  v_deptno NUMBER := 50;
+  v_username VARCHAR2(15);
+  v_err_code NUMBER;
+  v_err_msg VARCHAR2(255);
+BEGIN
+
+  INSERT INTO dept VALUES (v_deptno, 'FUTURE', 'BOSTON');
+  
+  DELETE FROM dept WHERE deptno = v_deptno;
+
+  INSERT INTO dept VALUES (20, 'FUTURE', 'BOSTON');
+
+EXCEPTION
+  WHEN OTHERS THEN
+    v_err_code := SQLCODE;
+    v_err_msg := SQLERRM;
+
+    INSERT INTO log_error (Occur_date, Username, Err_code, Err_msg)
+    VALUES (SYSDATE, USER, v_err_code, v_err_msg);
+    
+
+    ROLLBACK;
+END;
+/
+
+
+
+column Err_msg format A50;
+SELECT * FROM log_error ;
+-------------------------------------------------------Query 5 Output ---------------------------------------------------------------
+PL/SQL procedure successfully completed.
+
+>>Query Run In:Query Result 1
+
+0 rows updated.
+
+
+1 row inserted.
+

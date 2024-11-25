@@ -1,0 +1,258 @@
+--------------------------------Q1 Query-----------------------------------------
+SET SERVEROUTPUT ON
+DECLARE
+  TYPE Constr IS RECORD (
+    Tbl_name       VARCHAR2(30),
+    constr_name    VARCHAR2(30),
+    Constr_type     CHAR(1)
+  );
+  c_constr Constr;
+
+  CURSOR c_cur IS
+    SELECT table_name, constraint_name, constraint_type
+    FROM user_constraints
+    WHERE upper(table_name) = 'LOCATIONS'
+    ORDER BY constraint_type;
+BEGIN
+  OPEN c_cur;
+  DBMS_OUTPUT.PUT_LINE('==============================================================');
+  DBMS_OUTPUT.PUT_LINE('| Table Name       | Constraint Name    | Constraint Type    |');
+  DBMS_OUTPUT.PUT_LINE('--------------------------------------------------------------');
+  LOOP
+    FETCH c_cur INTO c_constr;
+    EXIT WHEN c_cur%NOTFOUND;
+    DBMS_OUTPUT.PUT_LINE(RPAD(c_constr.Tbl_name, 18) || ' | ' ||
+                         RPAD(c_constr.constr_name, 18) || ' | ' ||
+                         RPAD(CASE c_constr.Constr_type
+                             WHEN 'P' THEN 'Primary Key'
+                             WHEN 'U' THEN 'Unique Key'
+                             WHEN 'R' THEN 'Referential Integrity'
+                             WHEN 'C' THEN 'Check Constraint'
+                             ELSE c_constr.Constr_type || ' (No Constraints)'
+                             END, 18) || ' |');
+  END LOOP;
+  CLOSE c_cur;
+  DBMS_OUTPUT.PUT_LINE('--------------------------------------------------------------');
+  DBMS_OUTPUT.PUT_LINE('Finished processing constraints for LOCATIONS');
+END;
+/
+
+--------------------------------Output-------------------------------------------
+/*
+==============================================================
+| Table Name       | Constraint Name    | Constraint Type    |
+--------------------------------------------------------------
+LOCATIONS          | LOC_CITY_NN        | Check Constraint   |
+LOCATIONS          | LOC_ID_PK          | Primary Key        |
+--------------------------------------------------------------
+Finished processing constraints for LOCATIONS
+
+
+PL/SQL procedure successfully completed.
+*/
+
+--------------------------------Q2 Query-----------------------------------------
+set serveroutput on
+DECLARE
+  TYPE DEPT_INFO IS RECORD (
+    dept_id   departments.department_id%TYPE,
+    dept_name departments.department_name%TYPE,
+    str_city  VARCHAR2(40)
+  );
+  dept_info_rec DEPT_INFO;
+  dept_no NUMBER(4) := 30;
+BEGIN
+  SELECT d.department_id, d.department_name,
+         l.street_address ||' , '|| l.city
+  INTO dept_info_rec.dept_id, dept_info_rec.dept_name, dept_info_rec.str_city
+  FROM departments d
+  JOIN locations l ON d.location_id = l.location_id
+  WHERE d.department_id = dept_no;
+
+
+  DBMS_OUTPUT.PUT_LINE('Department ID : ' || dept_info_rec.dept_id);
+  DBMS_OUTPUT.PUT_LINE('Department Name : ' ||dept_info_rec.dept_name);
+  DBMS_OUTPUT.PUT_LINE('Street Address, City : ' || dept_info_rec.str_city);
+END;
+/
+
+--------------------------------Output-----------------------------------------
+/*
+Department ID : 30
+Department Name : Purchasing
+Street Address, City : 2004 Charade Rd , Seattle
+
+
+PL/SQL procedure successfully completed.
+*/
+
+--------------------------------Q3 Query-----------------------------------------
+SET serveroutput ON;
+
+DECLARE
+  TYPE Dept_Info IS RECORD (
+    dept_id departments.department_id%TYPE,
+    dept_name departments.department_name%TYPE,
+    str_city VARCHAR2(40)
+  );
+
+  TYPE Dept_Info_NT IS TABLE OF Dept_Info;
+
+  LIST Dept_Info_NT;
+
+  CURSOR c IS
+    SELECT d.department_id, d.department_name,
+           l.street_address || ', ' || l.city AS str_city
+    FROM departments d
+    JOIN locations l ON d.location_id = l.location_id
+    WHERE d.manager_id IS NOT NULL
+    ORDER BY 1;  -- Order by department ID
+BEGIN
+  LIST := Dept_Info_NT();
+
+  FOR indx IN c LOOP
+    LIST.extend;
+    LIST(LIST.count) := Dept_Info(indx.department_id, indx.department_name, indx.str_city);
+  END LOOP;
+
+  DBMS_OUTPUT.PUT_LINE('======================================================================');
+  DBMS_OUTPUT.PUT_LINE('Department ID | Department Name     | Street Address, City');
+  DBMS_OUTPUT.PUT_LINE('--------------|---------------------|--------------------------');
+
+  FOR i IN 1..LIST.count LOOP
+    DBMS_OUTPUT.PUT_LINE(RPAD(LIST(i).dept_id, 13) || ' | ' ||
+                         RPAD(LIST(i).dept_name, 19) || ' | ' ||
+                         LIST(i).str_city);
+  END LOOP;
+
+  DBMS_OUTPUT.PUT_LINE('======================================================================');
+END;
+/
+--------------------------------Output-------------------------------------------
+/*
+======================================================================
+Department ID | Department Name     | Street Address, City
+--------------|---------------------|--------------------------
+10            | Administration      | 2004 Charade Rd, Seattle
+20            | Marketing           | 147 Spadina Ave, Toronto
+30            | Purchasing          | 2004 Charade Rd, Seattle
+40            | Human Resources     | 8204 Arthur St, London
+50            | Shipping            | 2011 Interiors Blvd, San Francisco
+60            | IT                  | 2014 Jabberwocky Rd, Southlake
+70            | Public Relations    | Schwanthalerstr. 7031, Munich
+80            | Sales               | Magdalen Centre, Oxford
+90            | Executive           | 2004 Charade Rd, Seattle
+100           | Finance             | 2004 Charade Rd, Seattle
+110           | Accounting          | 2004 Charade Rd, Seattle
+======================================================================
+
+
+PL/SQL procedure successfully completed.
+*/
+
+--------------------------------Q4 Query-----------------------------------------
+DECLARE
+  PROCEDURE 
+  Dept_Emp_num(Deptno IN NUMBER, Emp_num OUT NUMBER) IS
+  BEGIN
+    SELECT COUNT(*) INTO Emp_num FROM employees WHERE department_id = Deptno;
+  END Dept_Emp_num;
+
+BEGIN
+  DECLARE
+    employee_count NUMBER;
+  BEGIN
+    Dept_Emp_num(60, employee_count);
+
+    IF employee_count = 1 THEN
+      DBMS_OUTPUT.PUT_LINE('Employees working in department 60: ' || employee_count || ' employee');
+    ELSE
+      DBMS_OUTPUT.PUT_LINE('Employees working in department 60: ' || employee_count || ' employees');
+    END IF;
+  END;
+END;
+/
+--------------------------------Output-------------------------------------------
+/*
+Employees working in department 60: 5 employees
+
+
+PL/SQL procedure successfully completed.
+*/
+--------------------------------Q5 Query-----------------------------------------
+CREATE OR REPLACE PROCEDURE Dept_Emp_Num(
+  Deptno IN NUMBER,
+  Emp_num OUT NUMBER
+) IS
+BEGIN
+  SELECT COUNT(*) INTO Emp_num FROM employees WHERE department_id = Deptno; 
+END Dept_Emp_Num;
+/
+
+DECLARE
+  DeptID NUMBER := 60; 
+  employee_count NUMBER;
+BEGIN
+  Dept_Emp_Num(DeptID, employee_count); 
+
+  DBMS_OUTPUT.PUT_LINE('Employees working in department ' || DeptId || ' : ' || employee_count);
+END;
+/
+--------------------------------Output-------------------------------------------
+/*
+
+Procedure DEPT_EMP_NUM compiled
+
+Employees working in department 60 : 5
+
+
+PL/SQL procedure successfully completed.
+*/
+--------------------------------Q6 Query-----------------------------------------
+DECLARE
+  CURSOR c_department IS 
+    SELECT department_id 
+    FROM departments 
+    WHERE manager_id IS NOT NULL 
+    ORDER BY department_id;
+
+  department_num NUMBER; 
+  employee_count NUMBER; 
+
+BEGIN
+  OPEN c_department; 
+
+  LOOP
+    FETCH c_department INTO department_num; 
+    EXIT WHEN c_department%NOTFOUND;
+
+    Dept_Emp_Num(department_num, employee_count); 
+
+    IF employee_count > 0 AND employee_count = 1 THEN 
+      DBMS_OUTPUT.PUT_LINE('Department ' || department_num || ': ' || employee_count || ' employee');
+    ELSE 
+      DBMS_OUTPUT.PUT_LINE('Department ' || department_num || ': ' || employee_count || ' employees');
+    END IF; 
+  END LOOP;
+
+  CLOSE c_department; 
+END;
+/
+--------------------------------Output---------------------------------------------
+/*
+Department 10: 1 employee
+Department 20: 2 employees
+Department 30: 6 employees
+Department 40: 1 employee
+Department 50: 45 employees
+Department 60: 5 employees
+Department 70: 1 employee
+Department 80: 34 employees
+Department 90: 3 employees
+Department 100: 6 employees
+Department 110: 2 employees
+
+
+PL/SQL procedure successfully completed.
+*/
+

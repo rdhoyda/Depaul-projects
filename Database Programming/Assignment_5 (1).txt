@@ -1,0 +1,392 @@
+---Q1 a----
+SET SERVEROUTPUT ON;
+
+DECLARE
+  Assigned_date DATE := TO_DATE('12-FEB-2024', 'DD-MON-YYYY');
+  total_bonus NUMBER := 0;
+  PROCEDURE Emply_Bonus(
+    empno IN employees.employee_id%TYPE,
+    sal OUT NUMBER,
+    work_yr OUT INTEGER,
+    bonus OUT NUMBER
+  ) IS
+  BEGIN
+    SELECT salary, 
+           FLOOR(MONTHS_BETWEEN(Assigned_date, hire_date) / 12) 
+    INTO   sal, 
+           work_yr
+    FROM   employees
+    WHERE  employee_id = empno;
+
+    IF work_yr >= 30 THEN
+      IF sal >= 8000 THEN
+        bonus := 2500;
+      ELSIF sal >= 3000 THEN
+        bonus := 2000;
+      ELSE
+        bonus := 1500;
+      END IF;
+    ELSIF work_yr >= 26 THEN
+      IF sal >= 8000 THEN
+        bonus := 2000;
+      ELSIF sal >= 3000 THEN
+        bonus := 1500;
+      ELSE
+        bonus := 1100;
+      END IF;
+    ELSE
+      bonus := 1000;
+    END IF;
+  END Emply_Bonus;
+
+BEGIN
+ 
+  DBMS_OUTPUT.PUT_LINE('Employee ID   Salary      Work Year   Bonus'); 
+  DBMS_OUTPUT.PUT_LINE('--------------------------------------------------------------------------'); 
+
+  FOR emp_rec IN (SELECT employee_id FROM employees WHERE department_id = 60) LOOP
+    DECLARE
+      emp_sal NUMBER;
+      emp_work_yr INTEGER;
+      emp_bonus NUMBER;
+    BEGIN
+      Emply_Bonus(emp_rec.employee_id, emp_sal, emp_work_yr, emp_bonus);
+      total_bonus := total_bonus + emp_bonus;
+
+      DBMS_OUTPUT.PUT_LINE(
+         RPAD('Employee ID: ' || emp_rec.employee_id, 18) || 
+         RPAD('Salary: ' || emp_sal, 14) ||
+         RPAD('Work Year: ' || emp_work_yr, 14) || 
+         'Bonus: ' || emp_bonus); 
+
+    EXCEPTION
+      WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('Employee with ID ' || emp_rec.employee_id || ' not found.');
+    END;
+  END LOOP;
+
+  DBMS_OUTPUT.PUT_LINE('--------------------------------------------------------------------------');
+  DBMS_OUTPUT.PUT_LINE('Total Bonus for Department 60: ' || total_bonus);
+END;
+/
+-----OUTPUT-----
+PL/SQL procedure successfully completed.
+
+Employee ID   Salary      Work Year   Bonus
+--------------------------------------------------------------------------
+Employee ID: 103  Salary: 9000  Work Year: 34 Bonus: 2500
+Employee ID: 104  Salary: 6000  Work Year: 32 Bonus: 2000
+Employee ID: 105  Salary: 4800  Work Year: 26 Bonus: 1500
+Employee ID: 106  Salary: 4800  Work Year: 26 Bonus: 1500
+Employee ID: 107  Salary: 4200  Work Year: 25 Bonus: 1000
+--------------------------------------------------------------------------
+Total Bonus for Department 60: 8500
+
+-----Q1b------
+CREATE OR REPLACE PROCEDURE Emly_Bonus(
+  empno    IN  employees.employee_id%TYPE,
+  sal      OUT NUMBER,
+  work_yr  OUT INTEGER,
+  bonus    OUT NUMBER
+) AS
+  v_assigned_date DATE := TO_DATE('12-FEB-2024', 'DD-MON-YYYY'); 
+BEGIN
+  SELECT salary, 
+         FLOOR(MONTHS_BETWEEN(v_assigned_date, hire_date) / 12) 
+  INTO   sal, 
+         work_yr
+  FROM   employees
+  WHERE  employee_id = empno;
+  IF work_yr >= 30 THEN
+     IF sal >= 8000 THEN
+        bonus := 2500;
+     ELSIF sal >= 3000 THEN
+        bonus := 2000;
+     ELSE  -- Salary must be < 3000
+        bonus := 1500; 
+     END IF;
+  ELSIF work_yr >= 26 AND sal >= 8000 THEN
+     bonus := 2000;  
+  ELSIF work_yr >= 26 AND sal >= 3000 THEN
+     bonus := 1500;
+  ELSIF work_yr >= 26 THEN  -- Salary must be < 3000
+     bonus := 1100;
+  ELSE  -- Work years must be < 26
+     bonus := 1000;  
+  END IF; 
+END Emly_Bonus;
+/
+
+----
+DECLARE
+    total_bonus NUMBER := 0;
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Employee ID  | Salary   | Work Year  | Bonus');
+    DBMS_OUTPUT.PUT_LINE('------------------------------------------------');
+
+    FOR emp_rec IN (SELECT employee_id FROM employees WHERE department_id = 60) LOOP
+        DECLARE
+            emp_sal NUMBER;
+            emp_work_yr INTEGER;
+            emp_bonus NUMBER;
+        BEGIN
+            Emly_Bonus(emp_rec.employee_id, emp_sal, emp_work_yr, emp_bonus);
+            total_bonus := total_bonus + emp_bonus;
+            DBMS_OUTPUT.PUT_LINE(
+                RPAD(emp_rec.employee_id, 13) || '| ' ||
+                RPAD(emp_sal, 9) || '| ' ||
+                RPAD(emp_work_yr, 11) || '| ' ||
+                emp_bonus
+            );
+        EXCEPTION
+            WHEN NO_DATA_FOUND THEN
+                DBMS_OUTPUT.PUT_LINE('Employee with ID ' || emp_rec.employee_id || ' not found.');
+        END;
+    END LOOP;
+
+    DBMS_OUTPUT.PUT_LINE('------------------------------------------------');
+    DBMS_OUTPUT.PUT_LINE('Total Bonus for Department 60: ' || total_bonus);
+END;
+/
+
+----------------------------OUTPUT--------------------------------------
+Procedure EMLY_BONUS compiled
+
+Employee ID  | Salary   | Work Year  | Bonus
+------------------------------------------------
+103          | 9000     | 34         | 2500
+104          | 6000     | 32         | 2000
+105          | 4800     | 26         | 1500
+106          | 4800     | 26         | 1500
+107          | 4200     | 25         | 1000
+------------------------------------------------
+Total Bonus for Department 60: 8500\
+
+------Q1 C-----------------------------------------------
+CREATE OR REPLACE FUNCTION FN_Bonus(
+  empno IN employees.employee_id%TYPE
+) RETURN NUMBER AS
+  Assigned_date DATE := TO_DATE('12-FEB-2024', 'DD-MON-YYYY');
+  sal NUMBER;
+  work_yr INTEGER;
+  bonus NUMBER;
+BEGIN
+ 
+  SELECT salary, 
+         FLOOR(MONTHS_BETWEEN(Assigned_date, hire_date) / 12) 
+  INTO   sal, 
+         work_yr
+  FROM   employees
+  WHERE  employee_id = empno;
+
+
+  IF work_yr >= 30 THEN
+     bonus := 1500;   
+     IF sal >= 3000 THEN 
+        bonus := 2000; 
+        IF sal >= 8000 THEN
+           bonus := 2500; 
+        END IF;
+     END IF;
+  ELSIF work_yr >= 26 THEN
+     bonus := 1100; 
+     IF sal >= 3000 THEN
+        bonus := 1500; 
+        IF sal >= 8000 THEN
+           bonus := 2000; 
+        END IF;
+     END IF;
+  ELSE
+     bonus := 1000; 
+  END IF;
+
+  RETURN bonus;
+END FN_Bonus;
+/
+----
+DECLARE
+  total_bonus NUMBER := 0;
+  emp_bonus NUMBER;
+BEGIN
+ 
+  DBMS_OUTPUT.PUT_LINE('Employee ID |  Bonus'); 
+  DBMS_OUTPUT.PUT_LINE('---------------------'); 
+
+  FOR emp_rec IN (SELECT employee_id FROM employees WHERE department_id = 60) LOOP
+    emp_bonus := FN_Bonus(emp_rec.employee_id);
+    total_bonus := total_bonus + emp_bonus;
+
+
+    DBMS_OUTPUT.PUT_LINE(
+       RPAD('' || emp_rec.employee_id, 12) || 
+       '|  ' || emp_bonus);
+  END LOOP;
+
+ 
+  DBMS_OUTPUT.PUT_LINE('---------------------');
+  DBMS_OUTPUT.PUT_LINE('Total Bonus for Department 60: ' || total_bonus);
+END;
+/
+
+------Q1 d--------
+DECLARE
+  bonus_total NUMBER := 0;
+
+  TYPE E_Bonus IS RECORD (
+    emp_id NUMBER(6),
+    sal NUMBER(8, 2),
+    work_yr INTEGER,
+    bonus NUMBER(8, 2)
+  );
+
+  FUNCTION FN_Bonus(empno IN employees.employee_id%TYPE) RETURN E_Bonus IS
+    Assigned_date DATE := TO_DATE('12-FEB-2024', 'DD-MON-YYYY');
+    hire_date employees.hire_date%TYPE;
+    work_yr INTEGER;
+    sal NUMBER(8, 2);
+    bonus NUMBER(8, 2);
+    emp_info E_Bonus; 
+  BEGIN
+    SELECT hire_date, salary
+    INTO   hire_date, sal
+    FROM   employees 
+    WHERE  employee_id = empno;
+
+
+    work_yr := FLOOR(MONTHS_BETWEEN(Assigned_date, hire_date) / 12);
+
+    
+    IF work_yr >= 30 THEN
+       IF sal >= 8000 THEN
+          bonus := 2500;
+       ELSIF sal >= 3000 THEN
+          bonus := 2000;
+       ELSE 
+          bonus := 1500; 
+       END IF;
+    ELSIF work_yr >= 26 THEN
+       IF sal >= 8000 THEN
+          bonus := 2000;
+       ELSIF sal >= 3000 THEN
+          bonus := 1500;
+       ELSE 
+          bonus := 1100; 
+       END IF;
+    ELSE  
+       bonus := 1000; 
+    END IF;
+
+    
+    emp_info.emp_id := empno;
+    emp_info.sal := sal;
+    emp_info.work_yr := work_yr;
+    emp_info.bonus := bonus;
+
+    RETURN emp_info;
+  END FN_Bonus;
+
+BEGIN
+  FOR emp_rec IN (SELECT employee_id FROM employees WHERE department_id = 60) LOOP 
+    DECLARE
+      emp_data E_Bonus; 
+    BEGIN
+      emp_data := FN_Bonus(emp_rec.employee_id);
+
+      DBMS_OUTPUT.PUT_LINE('Employee ID: ' || emp_data.emp_id || 
+                           ', Salary: '    || emp_data.sal || 
+                           ', Work Year: ' || emp_data.work_yr || 
+                           ', Bonus: '     || emp_data.bonus);
+
+      bonus_total := bonus_total + emp_data.bonus; 
+    END;
+  END LOOP;
+
+  DBMS_OUTPUT.PUT_LINE('Total Bonus for Department 60: ' || bonus_total);
+END;
+/
+----OUTPUT-----
+Employee ID: 103, Salary: 9000, Work Year: 34, Bonus: 2500
+Employee ID: 104, Salary: 6000, Work Year: 32, Bonus: 2000
+Employee ID: 105, Salary: 4800, Work Year: 26, Bonus: 1500
+Employee ID: 106, Salary: 4800, Work Year: 26, Bonus: 1500
+Employee ID: 107, Salary: 4200, Work Year: 25, Bonus: 1000
+Total Bonus for Department 60: 8500
+
+
+PL/SQL procedure successfully completed.
+
+----Q2------------------------------
+   
+DECLARE
+  
+  FUNCTION Emp_Job (emp_id number) RETURN varchar2 IS
+    job_id varchar2(10);
+  BEGIN
+    SELECT job_id
+    INTO job_id
+    FROM employees
+    WHERE employee_id = emp_id;
+
+    RETURN job_id;
+  END Emp_Job;
+  FUNCTION Emp_Job (emp_email varchar2) RETURN varchar2 IS
+    job_id varchar2(10);
+  BEGIN
+    SELECT job_id
+    INTO job_id
+    FROM employees
+    WHERE email = emp_email;
+
+    RETURN job_id;
+  END Emp_Job;
+
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('employee ID 170: ' || Emp_Job(170));
+
+
+  DBMS_OUTPUT.PUT_LINE('employee email TFOX: ' || Emp_Job('TFOX'));
+END;
+/
+-----OUTPUT----
+PL/SQL procedure successfully completed.
+
+employee ID 170: SA_REP
+employee email TFOX: SA_REP
+
+
+PL/SQL procedure successfully completed.
+
+-----Q3--------
+DECLARE
+  TYPE emp_name IS RECORD (
+   f_name VARCHAR2(20),
+   l_name VARCHAR2(25)
+   );
+   
+   emp1 emp_name;
+   emp2 emp_name;
+   emp3 emp_name;
+   result BOOLEAN;
+   
+   BEGIN
+   SELECT first_name,last_name INTO emp1.f_name, emp1.l_name
+   FROM employees
+   WHERE employee_id = 170;
+   
+   emp2 := emp1;
+   emp3.f_name := 'Tayler';
+   emp3.l_name := 'Fox';
+   
+   result := (UPPER(emp2.f_name) = UPPER(emp3.f_name)) AND (UPPER(emp2.l_name) = UPPER(emp3.l_name));
+   IF result THEN
+   DBMS_OUTPUT.PUT_LINE('Emp 2 and 3 are equal');
+   ELSE
+   DBMS_OUTPUT.PUT_LINE('EMP 2 and 3 are not Equal');
+   END IF;
+   END;
+------OUTPUT------
+Emp 2 and 3 are equal
+
+
+PL/SQL procedure successfully completed.
+

@@ -1,0 +1,45 @@
+
+# Order Management System
+
+## Project Overview
+
+This project is an Order Management System implemented in Java. It includes various functionalities related to handling orders, managing product books, and pricing strategies. The application is designed to streamline the process of order management in a trading or e-commerce environment.
+
+## Technologies Used
+
+- **Java**: Core programming language used for implementing the application logic.
+- **Object-Oriented Programming (OOP)**: Utilized for creating modular and maintainable code.
+- **Git**: Version control system used for tracking changes and collaborating on the project.
+- **IntelliJ IDEA**: Integrated Development Environment (IDE) used for development.
+
+## Problem Solved
+
+The primary problem addressed by this project is the efficient management of orders and products in a trading system. Key functionalities include:
+
+- **Order Processing**: Handling the creation, update, and management of orders.
+- **Product Book Management**: Maintaining and updating the product books, which keep track of the products available for trade.
+- **Pricing Strategy**: Implementing various pricing strategies to ensure competitive and accurate pricing of products.
+
+## Learning Outcomes
+
+Throughout the development of this project, several key learnings were achieved:
+
+1. **Java Programming**: Enhanced proficiency in Java programming, particularly in the context of a real-world application.
+2. **Object-Oriented Design**: Applied OOP principles to create a well-structured and maintainable codebase.
+3. **Project Management**: Gained experience in managing a software project using version control and collaborative tools.
+4. **Problem Solving**: Developed problem-solving skills by addressing and implementing solutions for complex order and product management scenarios.
+
+## Key Components
+
+- **Order.java**: Handles the order creation and management logic.
+- **ProductBook.java**: Manages the product books.
+- **Price.java**: Implements pricing logic.
+- **PriceFactory.java**: Factory class for creating pricing strategies.
+- **Main.java**: Entry point of the application.
+- **OrderDTO.java**: Data Transfer Object for orders.
+- **BookSide.java**: Represents the side of a book (buy/sell).
+- **ProductBookSide.java**: Manages the sides of product books.
+
+## Usage
+
+To use this project, clone the repository and open it in IntelliJ IDEA. Ensure you have Java installed and set up in your development environment. Run the `Main.java` file to start the application.

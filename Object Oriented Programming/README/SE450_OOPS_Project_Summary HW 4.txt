@@ -1,0 +1,27 @@
+
+### Project Summary for Resume
+
+**Project Name:** SE450 OOPS Project
+
+**Technologies Used:**
+- Java
+- Object-Oriented Programming (OOP)
+- Design Patterns
+- IDE: IntelliJ IDEA
+
+**Problem Solved:**
+This project aimed to develop a comprehensive simulation system for managing market orders, tracking current market conditions, and handling user interactions. The primary challenges included implementing robust order validation mechanisms, maintaining real-time market data, and ensuring efficient handling of concurrent operations in a simulated trading environment.
+
+**Key Features:**
+- **Order Management:** Implementation of various order types, validation of order data, and processing of buy/sell requests.
+- **Market Tracking:** Real-time tracking and updating of market conditions using observer design patterns.
+- **User Management:** Creation and management of user profiles, including permissions and roles.
+- **Exception Handling:** Custom exceptions for handling invalid operations and ensuring system stability.
+
+**Learning Outcomes:**
+- **Advanced Java Programming:** Gained in-depth experience with Java, focusing on OOP principles and best practices.
+- **Design Patterns:** Applied various design patterns such as Singleton, Factory, and Observer to solve complex software design problems.
+- **Software Design and Architecture:** Enhanced understanding of designing scalable and maintainable software systems.
+- **Real-time Data Processing:** Developed skills in handling real-time data updates and ensuring system performance under concurrent user actions.
+
+This project significantly enhanced my technical skills and prepared me for real-world software development challenges, making me proficient in handling complex systems and improving my problem-solving abilities.

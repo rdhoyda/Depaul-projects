@@ -1,0 +1,40 @@
+
+## Data Visualization Assignment Summary
+
+### Project Overview
+This project focuses on various data visualization techniques to solve specific analytical problems. The tasks involved creating visualizations to explore and interpret data from different domains, including perception experiments, astronomical data, population growth, and air quality measurements. 
+
+### Technologies Used
+- **R Programming**: For data manipulation and visualization using libraries like ggplot2.
+- **Tableau**: For creating interactive visualizations.
+- **Python**: For additional data processing and visualization tasks.
+- **CSV Files**: For storing and handling datasets.
+
+### Problems Solved
+1. **Perception Experiment Analysis**:
+   - Analyzed experimental data to identify trends in overestimation and underestimation of values.
+   - Visualized error distributions across different tests.
+   - Compared response patterns to determine if participants improved after repeated trials.
+   - Identified and highlighted anomalous sequences in the data.
+
+2. **Astronomical Data Exploration**:
+   - Investigated the relationship between Messier object numbers and their properties.
+   - Compared distributions of object distances across different categories.
+   - Created scatter plots to analyze the relationship between distance and apparent magnitude, adjusting for angular size.
+
+3. **Montana Population Study**:
+   - Visualized population growth over time using logarithmic scales.
+   - Analyzed the rate of population change and identified periods of significant growth.
+
+4. **Air Quality Data Analysis**:
+   - Examined the relationship between wind speed and solar radiation.
+   - Compared distributions of wind and solar radiation data.
+   - Used multiple distribution comparison techniques to provide context for air quality variables.
+
+### Learnings and Insights
+- **Data Cleaning and Preparation**: Improved skills in cleaning and preparing data for analysis, ensuring accuracy in visualizations.
+- **Advanced Visualization Techniques**: Gained experience with advanced plotting techniques such as violin plots, scatter plots with regression lines, and logarithmic scales.
+- **Analytical Thinking**: Enhanced ability to analyze and interpret complex data sets, identifying trends, patterns, and anomalies.
+- **Tool Proficiency**: Increased proficiency in using R, Tableau, and Python for data visualization and analysis, enabling the creation of clear and informative visual representations.
+
+This project demonstrates my capability to tackle diverse data visualization challenges, utilize a variety of tools, and derive meaningful insights from data, making me well-suited for roles in data analysis and visualization.
